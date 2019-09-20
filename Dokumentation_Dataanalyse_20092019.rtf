@@ -1,0 +1,161 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\b\f0\fs32\lang7 Dokumentation Datenanalyse\fs22\par
+\par
+
+\pard\sa200\sl276\slmult1 Ziel:\par
+\b0 Von Team Datenquelle Daten bekommen und dort die Daten nach Brauchbarkeit analysieren.\line K\'f6nnen diese Daten verwendet werden?\b\par
+Woher beziehen wir unsere Daten?\b0\par
+{{\field{\*\fldinst{HYPERLINK https://reference.wolfram.com/language/note/WeatherDataSourceInformation.html }}{\fldrslt{https://reference.wolfram.com/language/note/WeatherDataSourceInformation.html\ul0\cf0}}}}\f0\fs22\par
+\b Welche Daten stehen uns zur Verf\'fcgung?\par
+
+\pard\sa200\sl276\slmult1\b0  FIELD   POSITION  TYPE   DESCRIPTION\par
+\par
+STN---  1-6       Int.   Station number (WMO/DATSAV3 number)\par
+                         for the location.\par
+\par
+WBAN    8-12      Int.   WBAN number where applicable--this is the\par
+                         historical "Weather Bureau Air Force Navy"\par
+                         number - with WBAN being the acronym.\par
+\par
+YEAR    15-18     Int.   The year.\par
+\par
+MODA    19-22     Int.   The month and day.\par
+\par
+TEMP    25-30     Real   Mean temperature for the day in degrees\par
+                         Fahrenheit to tenths.  Missing = 9999.9\par
+                       \par
+\par
+Count   32-33     Int.   Number of observations used in \par
+                         calculating mean temperature.\par
+\par
+DEWP    36-41     Real   Mean dew point for the day in degrees\par
+                         Fahrenheit to tenths.  Missing = 9999.9\par
+                         \par
+Count   43-44     Int.   Number of observations used in \par
+                         calculating mean dew point.  \par
+\par
+SLP     47-52     Real   Mean sea level pressure for the day\par
+                         in millibars to tenths.  Missing =       \par
+                         9999.9\par
+Count   54-55     Int.   Number of observations used in \par
+                         calculating mean sea level pressure.\par
+\par
+STP     58-63     Real   Mean station pressure for the day\par
+                         in millibars to tenths.  Missing =       \par
+                         9999.9\par
+Count   65-66     Int.   Number of observations used in \par
+                         calculating mean station pressure.  \par
+\par
+VISIB   69-73     Real   Mean visibility for the day in miles\par
+                         to tenths.  Missing = 999.9\par
+                         \par
+Count   75-76     Int.   Number of observations used in \par
+                         calculating mean visibility.      \par
+\par
+WDSP    79-83     Real   Mean wind speed for the day in knots\par
+                         to tenths.  Missing = 999.9 \par
+                        \par
+Count   85-86     Int.   Number of observations used in \par
+                         calculating mean wind speed.\par
+\par
+MXSPD   89-93     Real   Maximum sustained wind speed reported \par
+                         for the day in knots to tenths.\par
+                         Missing = 999.9\par
+                         \par
+\par
+GUST    96-100    Real   Maximum wind gust reported for the day\par
+                         in knots to tenths.  Missing = 999.9\par
+                         \par
+\par
+MAX     103-108   Real   Maximum temperature reported during the \par
+                         day in Fahrenheit to tenths--time of max \par
+                         temp report varies by country and        \par
+                         region, so this will sometimes not be    \par
+                         the max for the calendar day.  Missing = \par
+                         9999.9     \par
+                         \par
+Flag    109-109   Char   Blank indicates max temp was taken from the\par
+                         explicit max temp report and not from the              \par
+                         'hourly' data.  * indicates max temp was \par
+                         derived from the hourly data (i.e., highest\par
+                         hourly or synoptic-reported temperature).\par
+\par
+MIN     111-116   Real   Minimum temperature reported during the \par
+                         day in Fahrenheit to tenths--time of min \par
+                         temp report varies by country and        \par
+                         region, so this will sometimes not be  \par
+                         the min for the calendar day.  Missing = \par
+                         9999.9\par
+                        \par
+Flag    117-117   Char   Blank indicates min temp was taken from the\par
+                         explicit min temp report and not from the              \par
+                         'hourly' data.  * indicates min temp was \par
+                         derived from the hourly data (i.e., lowest\par
+                         hourly or synoptic-reported temperature).\par
+\par
+PRCP    119-123   Real   Total precipitation (rain and/or melted\par
+                         snow) reported during the day in inches\par
+                         and hundredths; will usually not end \par
+                         with the midnight observation--i.e., \par
+                         may include latter part of previous day.\par
+                         .00 indicates no measurable              \par
+                         precipitation (includes a trace).        \par
+                         Missing = 99.99\par
+                         Note:  Many stations do not report '0' on\par
+                         days with no precipitation--therefore,  \par
+                         '99.99' will often appear on these days.\par
+                         Also, for example, a station may only\par
+                         report a 6-hour amount for the period \par
+                         during which rain fell.\par
+                         See Flag field for source of data.\par
+Flag    124-124   Char   A = 1 report of 6-hour precipitation \par
+                             amount.\par
+                         B = Summation of 2 reports of 6-hour \par
+                             precipitation amount.\par
+                         C = Summation of 3 reports of 6-hour \par
+                             precipitation amount.\par
+                         D = Summation of 4 reports of 6-hour \par
+                             precipitation amount.\par
+                         E = 1 report of 12-hour precipitation\par
+                             amount.\par
+                         F = Summation of 2 reports of 12-hour\par
+                             precipitation amount.\par
+                         G = 1 report of 24-hour precipitation\par
+                             amount.\par
+                         H = Station reported '0' as the amount\par
+                             for the day (eg, from 6-hour reports),\par
+                             but also reported at least one\par
+                             occurrence of precipitation in hourly\par
+                             observations--this could indicate a\par
+                             trace occurred, but should be considered\par
+                             as incomplete data for the day.\par
+                         I = Station did not report any precip data\par
+                             for the day and did not report any\par
+                             occurrences of precipitation in its hourly\par
+                             observations--it's still possible that\par
+                             precip occurred but was not reported.\par
+\par
+SNDP    126-130   Real   Snow depth in inches to tenths--last     \par
+                         report for the day if reported more than\par
+                         once.  Missing = 999.9\par
+                        Note:  Most stations do not report '0' on\par
+                         days with no snow on the ground--therefore,\par
+                         '999.9' will often appear on these days.\par
+\par
+FRSHTT  133-138   Int.   Indicators (1 = yes, 0 = no/not          \par
+                         reported) for the occurrence during the \par
+                         day of:\par
+                         Fog ('F' - 1st digit).\par
+                         Rain or Drizzle ('R' - 2nd digit).\par
+                         Snow or Ice Pellets ('S' - 3rd digit).\par
+                         Hail ('H' - 4th digit).\par
+                         Thunder ('T' - 5th digit).\par
+                         Tornado or Funnel Cloud ('T' - 6th       \par
+                         digit).\par
+\b Was haben wir heute geschafft?\line\b0 - Verschiedene Datenquellen verglichen \line - Finale Datenquelle ausgew\'e4hlt\line - Ersten \'dcberlick der Daten der zu verwendenen Datenquelle\b\par
+Was ist der n\'e4chste Schritt?\par
+\b0 - Herkunft der Daten - Welche Organisation hat die Daten bereit gestellt?\line - Daten auf Qualit\'e4t und Vollst\'e4ndigkeit \'fcberpr\'fcfen \b\par
+}
+ 
