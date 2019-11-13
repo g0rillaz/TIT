@@ -1,0 +1,22 @@
+﻿
+.container_main {
+    height: 100vh;
+}
+
+.container_message {
+    height: auto;
+}
+
+.list_main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.listitem_main {
+    display: block;
+    list-style: none;
+    font-size: 10rem;
+    margin-right: 1%;
+    margin-left: 1%
+}
