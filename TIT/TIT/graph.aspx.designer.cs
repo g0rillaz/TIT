@@ -15,21 +15,12 @@ namespace TIT
     {
 
         /// <summary>
-        /// ctl00-Steuerelement
+        /// Chart1-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ctl00;
-
-        /// <summary>
-        /// SqlDataSource1-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
     }
 }
