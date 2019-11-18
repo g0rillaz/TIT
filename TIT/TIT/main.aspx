@@ -1,10 +1,10 @@
-﻿<%@ Page Title="Startseite" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="main.aspx.cs" Inherits="TIT.main" %>
+﻿<%@ Page Title="Startseite" Language="C#" MasterPageFile="~/Start.Master" AutoEventWireup="true" CodeBehind="main.aspx.cs" Inherits="TIT.main" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container_main">
         <div class="container_message">
-            <h1>Willkommen bei TiT - Temperature in Time</h1>
-            <h3>Bitte wähle eine Funktion aus</h3>
+            <h1>Welcome at TiT - Temperature in Time</h1>
+            <h3>Please choose an option</h3>
         </div>
         <div class="flexbox_main">
             <a class="flexboxitem_main" href="graph.aspx">
