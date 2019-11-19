@@ -123,6 +123,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="graph.aspx" />
     <Content Include="Images\gletscher.jpg" />
+    <Content Include="info.aspx" />
     <Content Include="main.aspx" />
     <Content Include="map.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -153,9 +154,11 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="search.aspx" />
     <Content Include="Site.Master" />
     <Content Include="Style\style_main.css" />
     <Content Include="Style\style_start.css" />
+    <Content Include="Style\style_table.css" />
     <Content Include="table.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -175,6 +178,13 @@
     <Compile Include="graph.aspx.designer.cs">
       <DependentUpon>graph.aspx</DependentUpon>
     </Compile>
+    <Compile Include="info.aspx.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info.aspx.designer.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+    </Compile>
     <Compile Include="main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +200,13 @@
       <DependentUpon>map.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Start.Master.cs">
       <DependentUpon>Start.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

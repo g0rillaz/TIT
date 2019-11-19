@@ -7,13 +7,11 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace TIT
-{
-
-
-    public partial class table
-    {
-
+namespace TIT {
+    
+    
+    public partial class table {
+        
         /// <summary>
         /// dropdown_country-Steuerelement
         /// </summary>
@@ -22,7 +20,7 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList dropdown_country;
-
+        
         /// <summary>
         /// dropdown_station-Steuerelement
         /// </summary>
@@ -31,7 +29,16 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList dropdown_station;
-
+        
+        /// <summary>
+        /// dropdown_sort-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropdown_sort;
+        
         /// <summary>
         /// datepicker_from-Steuerelement
         /// </summary>
@@ -40,7 +47,7 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl datepicker_from;
-
+        
         /// <summary>
         /// datepicker_to-Steuerelement
         /// </summary>
@@ -49,7 +56,34 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl datepicker_to;
-
+        
+        /// <summary>
+        /// checkbox_option1-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkbox_option1;
+        
+        /// <summary>
+        /// checkbox_option2-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkbox_option2;
+        
+        /// <summary>
+        /// checkbox_option3-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkbox_option3;
+        
         /// <summary>
         /// button_getData-Steuerelement
         /// </summary>
@@ -58,7 +92,7 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button button_getData;
-
+        
         /// <summary>
         /// gridview_main-Steuerelement
         /// </summary>

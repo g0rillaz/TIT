@@ -38,7 +38,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+<%--        <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -56,8 +56,16 @@
                     </ul>
                 </div>
             </div>
+        </div>--%>
+        <div class="sidebar">
+            <a href="main.aspx" class="logo"><h1>TiT</h1></a>
+            <a href="graph.aspx"><i class="fas fa-chart-line fa-fw"></i> Graph</a>
+            <a href="map.aspx"><i class="fas fa-map fa-fw"></i> Map</a>
+            <a href="table.aspx"><i class="fas fa-table fa-fw"></i> Table</a>
+            <a href="search.aspx"><i class="fas fa-search fa-fw"></i> Search</a>
+            <a href="info.aspx"><i class="fas fa-info fa-fw"></i> Info</a>
         </div>
-        <div class="container body-content">
+        <div class="container body-content container_maincontent">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             

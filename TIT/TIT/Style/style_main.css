@@ -1,4 +1,42 @@
-﻿
+﻿body {
+    padding: 0;
+}
+
+.sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: black;
+    padding-top: 40px;
+}
+
+    .sidebar a {
+        display: block;
+        padding: 6px 8px 6px 40px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+    }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+.logo {
+    padding: 6px 8px 6px 50px !important;
+}
+
+.container_maincontent {
+    position: relative;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 200px;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -7,14 +45,9 @@
     background-color: white;
 }
 
-.footer p {
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 20px;
-    float: right;
-}
-
-
-.container_table {
-    width: 80%;
-}
+    .footer p {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 20px;
+        float: right;
+    }
