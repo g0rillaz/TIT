@@ -7,20 +7,18 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace TIT
-{
-
-
-    public partial class graph
-    {
-
+namespace TIT {
+    
+    
+    public partial class graph {
+        
         /// <summary>
-        /// Chart1-Steuerelement
+        /// chart_main-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chart_main;
     }
 }
