@@ -58,12 +58,13 @@
             </div>
         </div>--%>
         <div class="sidebar">
-            <a href="main.aspx" class="logo"><h1>TiT</h1></a>
+            <a href="main.aspx" class="logo"><h1>TiT</h1></a>            
+            <a href="search.aspx"><i class="fas fa-search fa-fw"></i> Search</a>
             <a href="graph.aspx"><i class="fas fa-chart-line fa-fw"></i> Graph</a>
             <a href="map.aspx"><i class="fas fa-map fa-fw"></i> Map</a>
             <a href="table.aspx"><i class="fas fa-table fa-fw"></i> Table</a>
-            <a href="search.aspx"><i class="fas fa-search fa-fw"></i> Search</a>
             <a href="info.aspx"><i class="fas fa-info fa-fw"></i> Info</a>
+            <a href="admin.aspx"><i class="fas fa-tools fa-fw"></i> Admin</a>
         </div>
         <div class="container body-content container_maincontent">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
