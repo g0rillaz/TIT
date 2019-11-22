@@ -20,41 +20,72 @@ namespace TIT
 
         }
 
-        private void createGeoJson()
+        private Feature createPointFeature(Station station)
         {
-            Position position = new Position(53.55021, 8.57673);
+            Position position = new Position(station.Latitude, station.Longitude);
             Point point = new Point(position);
-           
-            Position position2 = new Position(52.52437, 13.41053);
-            Point point2 = new Point(position);
-
-            LineString line = new LineString(new[] { position, position2 });
 
             Dictionary<string, object> properties = new Dictionary<string, object>();
-            properties.Add("title", "Bremerhaven");
-
-            Dictionary<string, object> properties2 = new Dictionary<string, object>();
-            properties2.Add("title", "Berlin");
-
-            Dictionary<string, object> properties3 = new Dictionary<string, object>();
-            properties3.Add("title", "Bremerhaven - Berlin");
+            properties.Add("name", station.Name);
+            properties.Add("country", station.Country);
+            properties.Add("latitude", position.Latitude);
+            properties.Add("longitude", position.Longitude);
+            //properties.Add("altitude", position.Altitude);
 
             Feature feature = new Feature(point, properties);
-            Feature feature2 = new Feature(point2, properties2);
-            Feature feature3 = new Feature(line, properties3);
+
+            return feature;
+        }
+
+        private Feature createPolygonFeature(List<Station> list_station, string areaname)
+        {
+            List<Position> list_position = new List<Position>();
+            foreach(Station station in list_station)
+            {
+                Position position = new Position(station.Latitude, station.Longitude);
+                list_position.Add(position);
+            }
+
+            LineString lineString = new LineString(list_position);
+            List<LineString> list_linestring = new List<LineString>();
+            list_linestring.Add(lineString);
+
+            Polygon polygon = new Polygon(list_linestring);
+
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+            properties.Add("name", areaname);
+
+            Feature feature = new Feature(polygon, properties);
+            return feature;
+        }
+
+        private void createGeoJson()
+        {
+
+            List<Station> list_station = new List<Station>();
+            list_station.Add(new Station(1, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
+            list_station.Add(new Station(2, "Limburg", "Deutschland", "50.383", "8.067"));
+            list_station.Add(new Station(3, "Berlin", "Deutschland", "52.52437", "13.41053"));
+            list_station.Add(new Station(4, "Otterndorf", "Deutschland", "53.817", "8.900"));
+            list_station.Add(new Station(5, "Cuxhaven", "Deutschland", "53.867", "8.700"));
+            list_station.Add(new Station(6, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
 
             FeatureCollection collection = new FeatureCollection();
-            collection.Features.Add(feature);
-            collection.Features.Add(feature2);
-            collection.Features.Add(feature3);
+            foreach (Station station in list_station)
+            {
+                collection.Features.Add(createPointFeature(station));
+            }
 
-            string output = JsonConvert.SerializeObject(collection);
+            collection.Features.Add(createPolygonFeature(list_station, "Area"));
 
-            createCookie("GeoJson",output); 
+            //LineString line = new LineString(new[] { position, position2 });
+
+            string geojson = JsonConvert.SerializeObject(collection);
+            createCookie("GeoJson", geojson);
 
             string path = @"~\App_Data\GeoData.geojson";
-            File.WriteAllText(Server.MapPath(path), output);
-            Debug.WriteLine(output);
+            File.WriteAllText(Server.MapPath(path), geojson);
+            Debug.WriteLine(geojson);
         }
 
         private void createCookie(string name, string input)

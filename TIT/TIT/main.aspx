@@ -10,16 +10,19 @@
             <a class="flexboxitem_main" href="graph.aspx">
                 <i class="icon_main fas fa-chart-line fa-fw"></i>
                 <h3>Graph</h3>
+                <hr />
                 <p class="text_info">Erhalten Sie ausführliche Informationen über alle gesammelten Wetterdaten in aussagekräftigen Diagrammen.</p>
             </a>
             <a class="flexboxitem_main" href="map.aspx">
                 <i class="icon_main fas fa-map fa-fw"></i>
                 <h3>Map</h3>
+                <hr />
                 <p class="text_info">Erhalten Sie ausführliche Informationen über alle gesammelten Wetterdaten in einer großen Kartenübersicht.</p>
             </a>
             <a class="flexboxitem_main" href="table.aspx">
                 <i class="icon_main fas fa-table fa-fw"></i>
                 <h3>Table</h3>
+                <hr />
                 <p class="text_info">Erhalten Sie ausführliche Informationen über alle gesammelten Wetterdaten in Tabellenform.</p>
             </a>
         </div>
