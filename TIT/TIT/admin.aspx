@@ -33,19 +33,19 @@
             } else {
 
                 sendJson();
-                createPopup();
+                createPopup('Stations');
             }
         });
 
         //Functions
-        function createPopup() {
+        function createPopup(Name) {
 
             var popup = new mapboxgl.Popup({
                 closeButton: false,
-                closeOnClick: true
+                closeOnClick: false
             });
 
-            map.on('mouseenter', 'Stations', function (e) {
+            map.on('mouseenter', Name, function (e) {
                 // Change the cursor style as a UI indicator.
                 map.getCanvas().style.cursor = 'pointer';
 
@@ -66,10 +66,12 @@
                     .addTo(map);
             });
 
-            map.on('mouseleave', 'places', function () {
+            map.on('mouseleave', Name, function () {
                 map.getCanvas().style.cursor = '';
                 popup.remove();
             });
+
+            
 
         };
 
