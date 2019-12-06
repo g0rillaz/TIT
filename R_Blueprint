@@ -1,0 +1,25 @@
+
+
+
+exec sp_execute_external_script @language =N'R'
+@script=N'
+        #Die Daten des SQL-Befehls werden in einer Matrix gespeichert (Siehe Input Data)
+        messwerte <- as.matrix(InputDataSet)
+        #Hier werden minimum und maximum aus der vierten spalte der oben erstellten MAtrix erstellt
+        min <- min(messwerte,[,4])
+        max <- max(messwerte,[,4])
+        mean <- mean(messwerte,[,4])
+        
+        #Nun speichern wir das Ergebnis in drei Variablen
+        OutputDataSet <- data.frame(min,mean,max)
+
+#Dies ist das SQl-Statement, um die Daten für die R-Prozedur abzurufen:
+@input_data_1 =N'SELECT
+                      STUFF
+                      STUFF
+                      STUFF
+                FROM DATABASE'
+
+
+
+with result sets (  )
