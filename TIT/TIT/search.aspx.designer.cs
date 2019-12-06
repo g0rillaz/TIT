@@ -7,9 +7,29 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace TIT {
-    
-    
-    public partial class search {
+namespace TIT
+{
+
+
+    public partial class search
+    {
+
+        /// <summary>
+        /// textbox_search-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textbox_search;
+
+        /// <summary>
+        /// button_search-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button button_search;
     }
 }

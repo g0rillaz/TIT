@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TITLib.Statics">
-    <Position X="1.5" Y="1.5" Width="1.5" />
+    <Position X="1.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Statics.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TITLib.Station">
-    <Position X="6.25" Y="2" Width="1.5" />
+    <Position X="6.25" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAEAAgAAAAMBIAAQAAAIAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Station.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TITLib.Country">
-    <Position X="4.5" Y="2" Width="1.5" />
+    <Position X="3.75" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAgAAAAABAAAQAAACAAAAAAAAAAAAAACA=</HashCode>
       <FileName>Country.cs</FileName>
     </TypeIdentifier>
   </Class>

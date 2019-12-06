@@ -28,7 +28,7 @@
 
             if (cookie == "") {
 
-                alert('FEHLER');
+                //alert('FEHLER');
 
             } else {
 
