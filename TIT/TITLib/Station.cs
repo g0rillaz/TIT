@@ -18,6 +18,16 @@ namespace TITLib
             }
         }
 
+        private string _number;
+        public string Number
+        {
+            get => _number;
+            set
+            {
+                _number = value;
+            }
+        }
+
         private string _name;
         public string Name
         {

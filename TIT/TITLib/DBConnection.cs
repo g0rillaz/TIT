@@ -32,16 +32,6 @@ namespace TITLib
             }
         }
 
-        private SqlDataReader _datareader;
-        public SqlDataReader DataReader
-        {
-            get => _datareader;
-            set
-            {
-                _datareader = value;
-            }
-        }
-
         /// <summary>
         /// Erstellt eine neue Verbindung
         /// </summary>
@@ -90,9 +80,9 @@ namespace TITLib
 
         private DataTable readData()
         {
-            DataReader = Command.ExecuteReader();
+            SqlDataReader datareader = Command.ExecuteReader();
             DataTable dataTable = new DataTable();
-            dataTable.Load(DataReader);
+            dataTable.Load(datareader);
 
             return dataTable;
         }
