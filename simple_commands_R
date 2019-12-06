@@ -14,3 +14,8 @@ median(data$row)
 
 #save file
 save (mtcars, file="C:/Users/pschlief/Desktop/test.RData")
+
+#install kriging method in R
+install.packages("kriging") 
+#install student ttest method in R
+install.packages("rt.test") 
