@@ -1,0 +1,38 @@
+﻿.container-statistic {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-statistic-module-header {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #0c5460;
+}
+
+.container-statistic-module-body {
+    display: flex;
+    background-color: #007bff;
+    flex-wrap: wrap;
+}
+
+.container-statistic-module-body-left {
+    background-color: #ffc107;
+    flex: 1 1 50%;
+}
+
+.container-statistic-module-body-right {
+    background-color: #28a745;
+    flex: 1 1 50%;
+}
+
+.container-statistic-module-body-left-radiobuttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-statistic-module-body-commandbar {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(0, 0, 0, 0.5);
+}

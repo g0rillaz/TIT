@@ -10,13 +10,13 @@ using TITLib;
 
 namespace TIT
 {
-    public partial class table : System.Web.UI.Page
+    public partial class statistic : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                loadInfo();
+                //loadInfo();
             }
                 
         }
@@ -24,7 +24,7 @@ namespace TIT
         private void loadInfo()
         {
             Statics.getListCountrys();
-      
+
             //ObservableCollection<Country> oc_country = new ObservableCollection<Country>();
 
             dropdown_country.DataSource = Statics.list_country;
