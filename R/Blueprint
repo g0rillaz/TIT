@@ -1,0 +1,51 @@
+
+exec sp_execute_external_script @language =N'R'
+@script=N'
+        #Die Daten des SQL-Befehls werden in einer Matrix gespeichert (Siehe Input Data)
+        messwerte <- as.matrix(InputDataSet)
+        #Hier werden minimum und maximum aus der vierten spalte der oben erstellten MAtrix erstellt
+        min <- min(messwerte,[,4])
+        max <- max(messwerte,[,4])
+        mean <- mean(messwerte,[,4])
+
+        #Nun speichern wir das Ergebnis in drei Variablen
+        OutputDataSet <- data.frame(min,mean,max)
+
+#Dies ist das SQl-Statement, um die Daten für die R-Prozedur abzurufen:
+@input_data_1 =N'SELECT
+                      STUFF
+                      STUFF
+                      STUFF
+                FROM DATABASE'
+
+
+
+with result sets (  )
+
+Beispiel:
+
+SQL-Database:
+time	temp	country
+20190101	12	1
+20190201	10	1
+20190301	15	1
+20190401	13	1
+20190601	10	1
+20190701	7	1
+
+sp_execute_external_script
+@language = N'R',
+@script = N'
+        temp <- as.matrix(data$temp);
+        mean <- mean(temp);
+        #Nun speichern wir das Ergebnis in einer Variable
+        OutputDataSet <- data.frame(mean);
+        print(OutputDataSet);
+'
+-- Dies ist das SQl-Statement, um die Daten für die R-Prozedur abzurufen:
+ , @input_data_1 = N'SELECT TOP (100) [time] ,[temp],[country] FROM [Climate].[dbo].[TEMP];'
+-- Hiermit speichern wir das Ergebnis mit einem Namen 
+ , @input_data_1_name = N'data'
+
+ Source:
+ https://docs.microsoft.com/de-de/sql/relational-databases/system-stored-procedures/sp-execute-external-script-transact-sql?view=sql-server-ver15
