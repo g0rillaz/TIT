@@ -1,0 +1,32 @@
+drop table if exists Ergebnis;
+create table Ergebnis
+(
+		Minimum float not null,
+		Maximum float not null,
+		Mittelwert float not null
+);
+
+insert into Ergebnis
+exec
+sp_execute_external_script
+@language = N'R',
+@script = N'
+        temp <- as.matrix(data$temp);
+		
+		min		<- min(temp);
+		max		<- max(temp); 
+		mean	<- mean(temp);
+        
+		#Nun speichern wir das Ergebnis in einer Variable
+		Minimum		<- data.frame(min);
+		Maximum		<- data.frame(max); 
+		Mittelwert	<- data.frame(mean);
+		Ergebnis <- data.frame(Minimum, Maximum, Mittelwert);
+        
+		print(Minimum); print(Maximum); print(Mittelwert)
+'
+-- Dies ist das SQl-Statement, um die Daten für die R-Prozedur abzurufen:
+ , @input_data_1 = N'SELECT TOP (100) time,temp,country FROM Test;'
+-- Hiermit speichern wir das Ergebnis mit einem Namen 
+ , @input_data_1_name = N'data'
+ , @output_data_1_name=N'Ergebnis'
