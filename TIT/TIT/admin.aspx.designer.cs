@@ -7,11 +7,22 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace TIT {
-    
-    
-    public partial class admin {
-        
+namespace TIT
+{
+
+
+    public partial class admin
+    {
+
+        /// <summary>
+        /// baum-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl baum;
+
         /// <summary>
         /// button_createGeoJson-Steuerelement
         /// </summary>

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using TITLib;
 
@@ -17,7 +18,18 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            createControl();
+        }
 
+        private void createControl()
+        {
+            HtmlControl control = new HtmlGenericControl();
+            control = baum;
+            
+
+
+            //control.Controls.Add(button);
+            //control.Controls.Add(button2);
         }
 
         private Feature createPointFeature(Station station)

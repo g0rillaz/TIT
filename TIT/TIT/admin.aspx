@@ -125,6 +125,9 @@
             return "";
         };
     </script>
+    <div ID="baum" runat="server">
+
+    </div>
 
     <asp:Button ID="button_createGeoJson" OnClick="button_createGeoJson_Click" runat="server" Text="Create new GeoJson" />
     <%--<asp:Button ID="button_uploadJson" OnClientClick="sendJson(this)" runat="server" Text="Upload Json"/>--%>
