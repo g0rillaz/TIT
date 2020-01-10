@@ -1,0 +1,42 @@
+Create_Procedure
+
+USE [IN18]
+GO
+/****** Object:  StoredProcedure [IT\VoggM].[calc_mean]    Script Date: 10.01.2020 10:09:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [IT\VoggM].[calc_mean]
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+exec
+sp_execute_external_script
+@language = N'R',
+@script = N'
+        temp <- as.matrix(data$temp);
+		
+		min		<- min(temp);
+		max		<- max(temp); 
+		mean	<- mean(temp);
+        
+		#Nun speichern wir das Ergebnis in einer Variable
+		Minimum		<- data.frame(min);
+		Maximum		<- data.frame(max); 
+		Mittelwert	<- data.frame(mean);
+        
+		print(Minimum); print(Maximum); print(Mittelwert)
+'
+-- Dies ist das SQl-Statement, um die Daten für die R-Prozedur abzurufen:
+ , @input_data_1 = N'SELECT TOP (100) time,temp,country FROM Test;'
+-- Hiermit speichern wir das Ergebnis mit einem Namen 
+ , @input_data_1_name = N'data'
+END
