@@ -8,9 +8,6 @@ import pymssql
 from pymssql import Error
 import json
 
-# TODO:: DSN Verbindung aufbauen über den ODBC-
-#  driver
-# TODO:: Methode erstellen für ODC-requests
 
 
 def create_connectionSqlite(db_file):
@@ -41,14 +38,14 @@ def create_connection():
 
 def split_list(alist, wanted_parts):
     length = len(alist)
-    #print(alist)
     print("Es sind:", len(alist), "Stationen in der Liste")
     return [alist[i*length // wanted_parts: (i+1)*length // wanted_parts] for i in range(wanted_parts)]
 
 def IDsRanHolenCsv():
     """
-    return:: splitedList
+    return:: splited Lists with max 200 Station-Ids oder verkleiner die Liste um ein Element 
     """
+    # CSV-Datei Pfade
     csvPfad = ['Z:/Programme/Projekt_TiT/Projectdata/stations.csv',
                '/home/jezzn/home/jezzn/Coding_PROJEKTE/Pycharm/Project_TIT/DATA/stations.csv']
     with open(csvPfad[1], encoding="utf8", newline='') as csvfile:
@@ -56,23 +53,13 @@ def IDsRanHolenCsv():
         ids = []            # TODO:: halte alle IDs aber return immmer nur in einer länger von 200
         for station in spamreader:
             """Nehme die erste Spalte auf"""
-            #if len(ids) <= 10:
             ids.append(station[0])
-        #splitedList.append(split_list(ids, wanted_parts=15000))
         splitedList = split_list(ids, wanted_parts=153)
         print(splitedList)
         print("länger der ersten Liste: ", len(splitedList[0]))
         print("länger der letzten Liste: ", len(splitedList[-1]))
-
-
-
-    #for i in ids:
-     # print(len(ids),i)
     return splitedList
 
-
-def SQL_StationIDs():
-    pass
 
 
 def ApiRequest(apikey, startdate, enddate, station_id):
@@ -113,7 +100,6 @@ CREATE TABLE StationsDaten (id INTEGER NOT NULL, _date DATETIME, _temperatur DOU
 
 def scheissNone(non_item):
     if non_item is None:
-        # "'" + str(non_item) + "'" <--backup-Str-methode
         return "NULL"
     else:
         return non_item
@@ -126,22 +112,7 @@ def create_weatherset(conn, weatherset,stationID):
     :return: lezte weatherset id
     """
     def JsonToDB(dataJson,cur):
-        # TODO:: Eine Dictenary anders durch iterieren https://www.python-forum.de/viewtopic.php?t=3018
         for i in dataJson:
-            # print("'" + i["date"] + "'")
-            # print("Single Dataset: ", i)
-
-            # [dbo].[StationMeteoData]
-            # [dbo].[rerf]
-
-            #lastID = "SELECT id FROM [dbo].[rerf] WHERE id = (SELECT MAX(id) FROM [dbo].[rerf])"
-            #lastrow = cur.execute(lastID)
-            #cur.fetchall()
-            #print(lastrow)
-
-            #cur.fetchall()
-
-
             sqlQuerry = '''
                         INSERT INTO [dbo].[rerf]
                        ([STATION_ID]
@@ -192,22 +163,12 @@ def create_weatherset(conn, weatherset,stationID):
                 scheissNone(i["pressure"]),
                 stationID
                 )
-            #print(sqlQuerry)
-
-
-
             cur.execute(sqlQuerry)
-            # TODO:: ein brauchbaren return zurüchgeben, lastrowid?
+            # TODO:: ein brauchbaren return zurüchgeben, lastrowid zum Validieren der geschriebenen Datensätze.
         return print("SQL-LastRowID: ",cur.lastrowid)
-
     cur = conn.cursor()
     JsonToDB(weatherset, cur)
     conn.commit()
-    # print(str(weatherset[0]))
-    # print(sql)
-    # cur = conn.cursor()
-    # cur.execute(sql)
-
     return "", cur.lastrowid
 
 
@@ -215,7 +176,6 @@ def create_weatherset(conn, weatherset,stationID):
 def datetime_to_float(d):
     epoch = datetime.datetime.utcfromtimestamp(0)
     total_seconds = (d - epoch).total_seconds()
-    # total_seconds will be in decimals (millisecond precision)
     return total_seconds
 
 def float_to_datetime(fl):
@@ -226,14 +186,12 @@ def float_to_datetime(fl):
 def main():
     database = r"/home/jezzn/Projects/TiT/TiTDB.db"
     # MS_Database = database='stations', user="SA", password='D0ckerR0gue99@@', host='172.17.0.1', port=1433
-
     """
     API-Keys:
     GF2pp1rP
     mMMOQxHR
     """
-
-    conn = create_connection()      # create a database connection
+    conn = create_connection()
     stationIDs = IDsRanHolenCsv()
 
     apiKeys = ['GF2pp1rP', 'mMMOQxHR']
