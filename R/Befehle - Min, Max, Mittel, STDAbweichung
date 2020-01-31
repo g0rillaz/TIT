@@ -1,0 +1,29 @@
+drop table if exists Ergebnis
+create table Ergebnis
+(
+		MinimumTemp float not null, MaximumTemp float not null, MittelTemp float not null, StandardAbweichungTemp float not null,
+		MinimumDruck float not null, MaximumDruck float not null, MittelDruck float not null, StandardAbweichungDruck float not null
+)
+insert into Ergebnis exec sp_execute_external_script
+@language = N'R',
+@script = N'
+        temp <- data$TEMP_MEAN;
+		pres <- data$SEA_PRES;
+
+		MinTemp<- min(temp); 
+		MaxTemp<- max(temp); 
+		MeanTemp<- mean(temp);
+		StandardAbwTemp<- sd(temp);
+
+		MinDruck<- min(pres); 
+		MaxDruck<- max(pres); 
+		MeanDruck<- mean(pres);
+		StandardAbwDruck<- sd(pres)
+		
+		Ergebnis<- data.frame(MinTemp, MaxTemp, MeanTemp, StandardAbwTemp, MinDruck, MaxDruck, MeanDruck, StandardAbwDruck);
+		print(Ergebnis);',
+-- Daten für R-Proc abrufen
+@input_data_1 = N'SELECT TOP (500) TEMP_MEAN, SEA_PRES FROM ProjectTIT.dbo.T_WEATHER_DATA_NOAA;',
+-- Ergebnis speichern 
+@input_data_1_name = N'data',
+@output_data_1_name= N'Ergebnis'
