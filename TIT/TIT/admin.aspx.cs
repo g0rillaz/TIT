@@ -25,7 +25,6 @@ namespace TIT
         {
             HtmlControl control = new HtmlGenericControl();
             control = baum;
-            
 
 
             //control.Controls.Add(button);
@@ -52,7 +51,7 @@ namespace TIT
         private Feature createPolygonFeature(List<Station> list_station, string areaname)
         {
             List<Position> list_position = new List<Position>();
-            foreach(Station station in list_station)
+            foreach (Station station in list_station)
             {
                 Position position = new Position(station.Latitude, station.Longitude);
                 list_position.Add(position);
@@ -74,21 +73,37 @@ namespace TIT
         private void createGeoJson()
         {
 
-            List<Station> list_station = new List<Station>();
-            list_station.Add(new Station(1, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
-            list_station.Add(new Station(2, "Limburg", "Deutschland", "50.383", "8.067"));
-            list_station.Add(new Station(3, "Berlin", "Deutschland", "52.52437", "13.41053"));
-            list_station.Add(new Station(4, "Otterndorf", "Deutschland", "53.817", "8.900"));
-            list_station.Add(new Station(5, "Cuxhaven", "Deutschland", "53.867", "8.700"));
-            list_station.Add(new Station(6, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
+            //List<Station> list_station = new List<Station>();
+            //list_station.Add(new Station(1, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
+            //list_station.Add(new Station(2, "Limburg", "Deutschland", "50.383", "8.067"));
+            //list_station.Add(new Station(3, "Berlin", "Deutschland", "52.52437", "13.41053"));
+            //list_station.Add(new Station(4, "Otterndorf", "Deutschland", "53.817", "8.900"));
+            //list_station.Add(new Station(5, "Cuxhaven", "Deutschland", "53.867", "8.700"));
+            //list_station.Add(new Station(6, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
 
+
+
+            Statics.getListStationsAll();
             FeatureCollection collection = new FeatureCollection();
-            foreach (Station station in list_station)
+            foreach (Station station in Statics.list_stations)
             {
+                if (Decimal.TryParse(station.Latitude, out decimal latitude) && Decimal.TryParse(station.Longitude, out decimal longitude))
+                {
+
+                    station.Latitude = Convert.ToString(latitude, System.Globalization.CultureInfo.InvariantCulture);
+                    station.Longitude = Convert.ToString(longitude, System.Globalization.CultureInfo.InvariantCulture);
+
+                }
+                else
+                {
+                    station.Latitude = "0";
+                    station.Longitude = "0";
+                }
+
                 collection.Features.Add(createPointFeature(station));
             }
 
-            collection.Features.Add(createPolygonFeature(list_station, "Area"));
+            //collection.Features.Add(createPolygonFeature(list_station, "Area"));
 
             //LineString line = new LineString(new[] { position, position2 });
 

@@ -81,5 +81,6 @@ namespace TITLib
             Longitude = longitude;
             Latitude = latitude;
         }
+
     }
 }
