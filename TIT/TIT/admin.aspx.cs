@@ -18,17 +18,7 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            createControl();
-        }
 
-        private void createControl()
-        {
-            HtmlControl control = new HtmlGenericControl();
-            control = baum;
-
-
-            //control.Controls.Add(button);
-            //control.Controls.Add(button2);
         }
 
         private Feature createPointFeature(Station station)
