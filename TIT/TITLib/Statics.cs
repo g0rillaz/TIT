@@ -24,7 +24,7 @@ namespace TITLib
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
 
-            string command = "SELECT * FROM PTIT_V_COUNTRY";
+            string command = "SELECT * FROM V_COUNTRY";
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)

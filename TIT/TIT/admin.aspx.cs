@@ -19,6 +19,11 @@ namespace TIT
         protected void Page_Load(object sender, EventArgs e)
         {
             createControl();
+
+            if (!IsPostBack)
+            {
+                loadInfo();
+            }
         }
 
         private void createControl()
@@ -119,6 +124,15 @@ namespace TIT
         {
             Response.Cookies[name].Value = input;
             Response.Cookies[name].Expires = DateTime.Now.AddMinutes(5);
+        }
+
+
+        private void loadInfo()
+        {
+            Statics.getListCountrys();
+
+            gridview_main.DataSource = Statics.list_country.OrderBy(x => x.Name);
+            gridview_main.DataBind();
         }
 
         protected void button_createGeoJson_Click(object sender, EventArgs e)
