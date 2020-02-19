@@ -59,8 +59,10 @@ namespace TITLib
                 station.Name = table.Rows[i]["NAME"].ToString();
                 //station.Country = table.Rows[i]["COUNTRY_NAME_TMP"].ToString();
                 station.Country = table.Rows[i]["COUNTRY_ID"].ToString();
-                station.Longitude = table.Rows[i]["LON"].ToString();
-                station.Latitude = table.Rows[i]["LAT"].ToString();
+
+                //LON UND LAT AKTUELL GETAUSCHT
+                station.Longitude = table.Rows[i]["LAT"].ToString();
+                station.Latitude = table.Rows[i]["LON"].ToString();
 
                 list_stations.Add(station);
             }
@@ -93,6 +95,11 @@ namespace TITLib
                 list_stations.Add(station);
             }
         }
+
+        //public static void getWeatherData()
+        //{
+        //    list_weatherdata = new List<WeatherData>
+        //}
 
     }
 }
