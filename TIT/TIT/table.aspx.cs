@@ -14,10 +14,10 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {
-                loadInfo();
-            }
+            //if(!IsPostBack)
+            //{
+            //    loadInfo();
+            //}
                 
         }
 
@@ -85,6 +85,41 @@ namespace TIT
         protected void dropdown_country_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshStations();
+        }
+
+       
+            
+
+            
+
+        protected void getDataButton_Click(object sender, EventArgs e)
+        {
+            List<string> selectedOptions = new List<string>();
+
+            string modulname = Modulname.Text;
+            DateTime fromDate = FromDate.SelectedDate;
+            DateTime toDate = ToDate.SelectedDate;
+
+            string region = Region.Text;
+            string station = Station.Text;
+            string interval = Interval.Text;
+            string orderedBy = OrderedBy.Text;
+
+            bool rawTemperature = RawTemperature.Checked;
+            bool meanTemperature = MeanTemperature.Checked;
+            bool medianTemperature = MedianTemperature.Checked;
+            bool minTemperature = MinTemperature.Checked;
+            bool maxTemperature = MaxTemperature.Checked;
+            bool standardDeviation = StandardDeviation.Checked;
+            bool modeTemperature = ModeTemperature.Checked;
+            bool rangeTemperature = RangeTemperature.Checked;
+
+            selectedOptions.Add(modulname);
+            //selectedOptions.Add(fromDate.ToLongDateString());
+            //selectedOptions.Add(toDate.ToLongDateString());
+
+            Console.WriteLine(rangeTemperature);
+            Debug.WriteLine(rangeTemperature);
         }
     }
 }
