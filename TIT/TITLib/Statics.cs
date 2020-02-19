@@ -96,6 +96,7 @@ namespace TITLib
             }
         }
 
+        //LÄDT die benötigten Wetterdaten
         public static void getWeatherData()
         {
             List<WeatherData> list_weatherdata = new List<WeatherData>();
@@ -107,15 +108,11 @@ namespace TITLib
 
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                Station station = new Station();
-                station.ID = Convert.ToInt32(table.Rows[i]["ID"]);
-                station.Number = table.Rows[i]["NUMBER"].ToString();
-                station.Name = table.Rows[i]["NAME"].ToString();
-                station.Country = table.Rows[i]["COUNTRY_NAME_TMP"].ToString();
-                station.Longitude = table.Rows[i]["LON"].ToString();
-                station.Latitude = table.Rows[i]["LAT"].ToString();
+                WeatherData weatherdata = new WeatherData();
+                weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+                //station.Number = table.Rows[i]["NUMBER"].ToString();
 
-                list_stations.Add(station);
+                list_weatherdata.Add(weatherdata);
             }
         }
 
