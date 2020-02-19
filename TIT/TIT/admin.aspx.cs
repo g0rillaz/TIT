@@ -32,8 +32,6 @@ namespace TIT
             control = baum;
 
 
-            //control.Controls.Add(button);
-            //control.Controls.Add(button2);
         }
 
         private Feature createPointFeature(Station station)
