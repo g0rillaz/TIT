@@ -96,10 +96,28 @@ namespace TITLib
             }
         }
 
-        //public static void getWeatherData()
-        //{
-        //    list_weatherdata = new List<WeatherData>
-        //}
+        public static void getWeatherData()
+        {
+            List<WeatherData> list_weatherdata = new List<WeatherData>();
+            dBConnection = new DBConnection();
+            dBConnection.createConnection(connectionstring);
+
+            string command = $"SELECT * FROM PTIT_V_STAT_METEO WHERE COUNTRY_NAME_TMP='{isocode}'";
+            DataTable table = dBConnection.readDataSql(command);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                Station station = new Station();
+                station.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+                station.Number = table.Rows[i]["NUMBER"].ToString();
+                station.Name = table.Rows[i]["NAME"].ToString();
+                station.Country = table.Rows[i]["COUNTRY_NAME_TMP"].ToString();
+                station.Longitude = table.Rows[i]["LON"].ToString();
+                station.Latitude = table.Rows[i]["LAT"].ToString();
+
+                list_stations.Add(station);
+            }
+        }
 
     }
 }
