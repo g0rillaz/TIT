@@ -4,6 +4,42 @@
     <link href="Style/style_statistic.css" rel="stylesheet" />
     <div class="container-statistic">
 
+
+
+
+        <div class="getSelectedOptions">
+        <asp:Button ID="getDataButton" Text="GetData" OnClick="getDataButton_Click" runat="server" />
+
+    
+        
+        <asp:TextBox  ID="Modulname" Text="Modulname(Modul1)" runat="server"></asp:TextBox>
+        <asp:TextBox  textmode="Date" ID="FromDate"  runat="server"></asp:TextBox>
+        <asp:TextBox  textmode="Date" ID="ToDate" runat="server"></asp:TextBox>
+
+        
+        <asp:DropDownList ID="Region" CssClass="" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="Station" CssClass="" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="Interval" CssClass="" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="OrderedBy" CssClass="" runat="server"></asp:DropDownList>
+
+
+        <asp:CheckBox ID="RawTemperature" Text="RawTemperature" runat="server" />
+        <asp:CheckBox ID="MeanTemperature" Text="MeanTemperature" runat="server" />
+        <asp:CheckBox ID="MedianTemperature" Text="MedianTemperature" runat="server" />
+        <asp:CheckBox ID="MinTemperature" Text="MinTemperature" runat="server" />
+        <asp:CheckBox ID="MaxTemperature" Text="MaxTemperature" runat="server" />
+        <asp:CheckBox ID="StandardDeviation" Text="StandardDeviation" runat="server" />
+        <asp:CheckBox ID="ModeTemperature" Text="ModeTemperature" runat="server" />
+        <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
+
+
+    </div>
+
+
+
+
+
+
         <div class="container-statistic-module"> </div>
 
         <div class="container-statistic-module-header">
@@ -84,7 +120,7 @@
             </div>
 
             <div class="container-statistic-module-body-commandbar">
-                <asp:Button ID="button_getData" Text="Get Data" OnClick="button_getData_Click" runat="server" />
+                <%--<asp:Button ID="button_getData" Text="Get Data" OnClick="button_getData_Click" runat="server" />--%>
             </div>
 
             
