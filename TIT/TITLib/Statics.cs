@@ -9,7 +9,7 @@ namespace TITLib
 {
     public static class Statics
     {
-        public static string connectionstring = "Data Source=s-mssql2017.it.gla; Initial Catalog=IN18; User id=IN18a; Password=IN18BSDGG;";
+        public static string connectionstring = "Data Source=s-mssql2019.it.gla; Initial Catalog=IN18; User id=IN18a; Password=IN18BSDGG;";
         //Server=localhost;Database=IN18;User Id=IN18a;Password=IN18BSDGG;";
         private static DBConnection dBConnection;
         public static List<Country> list_country;
@@ -21,7 +21,10 @@ namespace TITLib
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
 
-            string command = "SELECT * FROM PTIT_V_COUNTRY";
+
+            
+
+            string command = "SELECT * FROM T_COUNTRY";
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)

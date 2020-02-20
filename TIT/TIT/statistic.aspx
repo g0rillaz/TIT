@@ -17,7 +17,7 @@
         <asp:TextBox  textmode="Date" ID="ToDate" runat="server"></asp:TextBox>
 
         
-        <asp:DropDownList ID="Region" CssClass="" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="Region"  OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" CssClass="" runat="server"></asp:DropDownList>
         <asp:DropDownList ID="Station" CssClass="" runat="server"></asp:DropDownList>
         <asp:DropDownList ID="Interval" CssClass="" runat="server"></asp:DropDownList>
         <asp:DropDownList ID="OrderedBy" CssClass="" runat="server"></asp:DropDownList>
@@ -33,10 +33,36 @@
         <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
 
 
+            <br />
+
+
+            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+            <asp:GridView ID="gridview_main" runat="server" AutoGenerateColumns="False" CssClass="gridview_main">
+            <Columns>
+                <asp:TemplateField HeaderText="ID" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_ID" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Name" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_Name" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="IsoCode" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_IsoCode" runat="server" Text='<%# Eval("IsoCode") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
 
 
 
+        <br />
+        <br />
+        <br />
 
 
 
@@ -54,7 +80,7 @@
                 <div class="container-statistic-module-body-left-dropdowns">
                     <div class="container-statistic-module-body-left-dropdown">
                         <asp:Label ID="Label1" runat="server" Text="Region"></asp:Label>
-                        <asp:DropDownList ID="dropdown_country" OnSelectedIndexChanged="dropdown_country_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown" runat="server"></asp:DropDownList>
+                        <%--<asp:DropDownList ID="dropdown_country" OnSelectedIndexChanged="dropdown_country_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown" runat="server"></asp:DropDownList>--%>
                     </div>
                     <div>
                         <asp:Label ID="Label2" runat="server" Text="Station"></asp:Label>
@@ -119,31 +145,12 @@
 
             </div>
 
-            <div class="container-statistic-module-body-commandbar">
-                <%--<asp:Button ID="button_getData" Text="Get Data" OnClick="button_getData_Click" runat="server" />--%>
-            </div>
 
             
         </div>
+        </div>
 
-        <asp:GridView ID="gridview_main" runat="server" AutoGenerateColumns="False" CssClass="gridview_main">
-            <Columns>
-                <asp:TemplateField HeaderText="ID" ItemStyle-CssClass="" HeaderStyle-CssClass="">
-                    <ItemTemplate>
-                        <asp:Label ID="gridview_ID" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Name" ItemStyle-CssClass="" HeaderStyle-CssClass="">
-                    <ItemTemplate>
-                        <asp:Label ID="gridview_Name" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="IsoCode" ItemStyle-CssClass="" HeaderStyle-CssClass="">
-                    <ItemTemplate>
-                        <asp:Label ID="gridview_IsoCode" runat="server" Text='<%# Eval("IsoCode") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+
+        
     </div>
 </asp:Content>

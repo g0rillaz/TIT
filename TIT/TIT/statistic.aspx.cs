@@ -16,7 +16,7 @@ namespace TIT
         {
             if(!IsPostBack)
             {
-                //loadInfo();
+                loadInfo();
             }
                 
         }
@@ -27,10 +27,10 @@ namespace TIT
 
             //ObservableCollection<Country> oc_country = new ObservableCollection<Country>();
 
-            dropdown_country.DataSource = Statics.list_country;
-            dropdown_country.DataTextField = "Name";
-            dropdown_country.DataValueField = "IsoCode";
-            dropdown_country.DataBind();
+            Region.DataSource = Statics.list_country;
+            Region.DataTextField = "Name";
+            Region.DataValueField = "IsoCode";
+            Region.DataBind();
 
             //Test Start
             //dropdown_station.DataSource = list_country;
@@ -50,7 +50,7 @@ namespace TIT
 
         private void refreshStations()
         {
-            string IsoCode = dropdown_country.SelectedItem.Value;
+            string IsoCode = Region.SelectedItem.Value;
             Statics.getListStationsByCountry(IsoCode);
 
             dropdown_station.DataSource = Statics.list_stations;
@@ -63,7 +63,7 @@ namespace TIT
 
         private void getData()
         {
-            string countryIcoCode = dropdown_country.SelectedValue;
+            string countryIcoCode = Region.SelectedValue;
             string stationID = dropdown_station.SelectedValue;
             string sortby = dropdown_sort.SelectedValue;
             DateTime.TryParse(datepicker_from.Value, out DateTime datefrom);
@@ -82,7 +82,7 @@ namespace TIT
             getData();
         }
 
-        protected void dropdown_country_SelectedIndexChanged(object sender, EventArgs e)
+        protected void Region_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshStations();
         }
