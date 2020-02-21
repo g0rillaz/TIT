@@ -12,9 +12,12 @@ namespace TIT
 {
     public partial class statistic : System.Web.UI.Page
     {
+        private Control ucUserControl;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+
+            if (!IsPostBack)
             {
                 loadInfo();
             }
@@ -48,43 +51,44 @@ namespace TIT
             gridview_main.DataBind();
         }
 
-        private void refreshStations()
-        {
-            string IsoCode = Region.SelectedItem.Value;
-            Statics.getListStationsByCountry(IsoCode);
+        //private void refreshStations()
+        //{
+        //    string IsoCode = Region.SelectedItem.Value;
+        //    Statics.getListStationsByCountry(IsoCode);
 
-            dropdown_station.DataSource = Statics.list_stations;
-            dropdown_station.DataTextField = "Name";
-            dropdown_station.DataValueField = "Number";
-            dropdown_station.DataBind();
-
-
-        }
-
-        private void getData()
-        {
-            string countryIcoCode = Region.SelectedValue;
-            string stationID = dropdown_station.SelectedValue;
-            string sortby = dropdown_sort.SelectedValue;
-            DateTime.TryParse(datepicker_from.Value, out DateTime datefrom);
-            DateTime.TryParse(datepicker_to.Value, out DateTime dateto);
-            bool option1 = checkbox_option1.Checked;
-            bool option2 = checkbox_option2.Checked;
-            bool option3 = checkbox_option3.Checked;
+        //    dropdown_station.DataSource = Statics.list_stations;
+        //    dropdown_station.DataTextField = "Name";
+        //    dropdown_station.DataValueField = "Number";
+        //    dropdown_station.DataBind();
 
 
+        //}
 
-            Debug.WriteLine($"{countryIcoCode}, {stationID}, {sortby}, {datefrom.ToShortDateString()}, {dateto.ToShortDateString()}, {option1}, {option2}, {option3}");
-        }
+        //private void getData()
+        //{
+        //    string countryIcoCode = Region.SelectedValue;
+        //    string stationID = dropdown_station.SelectedValue;
+        //    string sortby = dropdown_sort.SelectedValue;
+        //    DateTime.TryParse(datepicker_from.Value, out DateTime datefrom);
+        //    DateTime.TryParse(datepicker_to.Value, out DateTime dateto);
+        //    bool option1 = checkbox_option1.Checked;
+        //    bool option2 = checkbox_option2.Checked;
+        //    bool option3 = checkbox_option3.Checked;
 
-        protected void button_getData_Click(object sender, EventArgs e)
-        {
-            getData();
-        }
+
+
+        //    Debug.WriteLine($"{countryIcoCode}, {stationID}, {sortby}, {datefrom.ToShortDateString()}, {dateto.ToShortDateString()}, {option1}, {option2}, {option3}");
+        //}
+
+        //protected void button_getData_Click(object sender, EventArgs e)
+        //{
+        //    getData();
+        //}
 
         protected void Region_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refreshStations();
+            //refreshStations();
+            
         }
 
         protected void getDataButton_Click(object sender, EventArgs e)
@@ -111,6 +115,18 @@ namespace TIT
 
 
             Console.WriteLine(selectedOptions);
+        }
+    
+        protected void createNewModule_Click(object sender, EventArgs e)
+        {
+
+           
+            Console.WriteLine("test");
+
+            ucUserControl = (Control)Page.LoadControl("ModuleComponent.ascx");
+            dwd.Controls.Add(ucUserControl);
+
+            
         }
     }
 }

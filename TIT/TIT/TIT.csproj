@@ -124,6 +124,7 @@
     <Content Include="info.aspx" />
     <Content Include="main.aspx" />
     <Content Include="map.aspx" />
+    <Content Include="ModuleComponent.ascx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -234,6 +235,12 @@
     </Compile>
     <Compile Include="map.aspx.designer.cs">
       <DependentUpon>map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleComponent.ascx.cs">
+      <DependentUpon>ModuleComponent.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleComponent.ascx.designer.cs">
+      <DependentUpon>ModuleComponent.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="search.aspx.cs">
