@@ -16,7 +16,7 @@ namespace TIT
         {
             if(!IsPostBack)
             {
-                loadInfo();
+                //loadInfo();
             }
                 
         }
@@ -90,27 +90,26 @@ namespace TIT
         protected void getDataButton_Click(object sender, EventArgs e)
         {
 
-            SelectedOptions selectedOptions = new SelectedOptions(
-                Modulname.Text, 
-                FromDate.Text,
-                ToDate.Text,
-                Region.Text,
-                Station.Text,
-                Interval.Text,
-                OrderedBy.Text,
-                RawTemperature.Checked,
-                MeanTemperature.Checked,
-                MedianTemperature.Checked,
-                MinTemperature.Checked,
-                MaxTemperature.Checked,
-                StandardDeviation.Checked,
-                ModeTemperature.Checked,
-                RangeTemperature.Checked
-                );
+            //SelectedOptions selectedOptions = new SelectedOptions(
+            //    Modulname.Text, 
+            //    FromDate.Text,
+            //    ToDate.Text,
+            //    Region.Text,
+            //    Station.Text,
+            //    Interval.Text,
+            //    OrderedBy.Text,
+            //    RawTemperature.Checked,
+            //    MeanTemperature.Checked,
+            //    MedianTemperature.Checked,
+            //    MinTemperature.Checked,
+            //    MaxTemperature.Checked,
+            //    StandardDeviation.Checked,
+            //    ModeTemperature.Checked,
+            //    RangeTemperature.Checked
+            //    );
 
 
 
-            Console.WriteLine(selectedOptions);
         }
     }
 }
