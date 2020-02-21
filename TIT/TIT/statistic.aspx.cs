@@ -10,7 +10,7 @@ using TITLib;
 
 namespace TIT
 {
-    public partial class table : System.Web.UI.Page
+    public partial class statistic : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,13 +24,13 @@ namespace TIT
         private void loadInfo()
         {
             Statics.getListCountrys();
-      
+
             //ObservableCollection<Country> oc_country = new ObservableCollection<Country>();
 
-            dropdown_country.DataSource = Statics.list_country;
-            dropdown_country.DataTextField = "Name";
-            dropdown_country.DataValueField = "IsoCode";
-            dropdown_country.DataBind();
+            Region.DataSource = Statics.list_country;
+            Region.DataTextField = "Name";
+            Region.DataValueField = "IsoCode";
+            Region.DataBind();
 
             //Test Start
             //dropdown_station.DataSource = list_country;
@@ -63,7 +63,7 @@ namespace TIT
 
         private void getData()
         {
-            string countryIcoCode = dropdown_country.SelectedValue;
+            string countryIcoCode = Region.SelectedValue;
             string stationID = dropdown_station.SelectedValue;
             string sortby = dropdown_sort.SelectedValue;
             DateTime.TryParse(datepicker_from.Value, out DateTime datefrom);
@@ -82,9 +82,35 @@ namespace TIT
             getData();
         }
 
-        protected void dropdown_country_SelectedIndexChanged(object sender, EventArgs e)
+        protected void Region_SelectedIndexChanged(object sender, EventArgs e)
         {
             refreshStations();
+        }
+
+        protected void getDataButton_Click(object sender, EventArgs e)
+        {
+
+            SelectedOptions selectedOptions = new SelectedOptions(
+                Modulname.Text, 
+                FromDate.Text,
+                ToDate.Text,
+                Region.Text,
+                Station.Text,
+                Interval.Text,
+                OrderedBy.Text,
+                RawTemperature.Checked,
+                MeanTemperature.Checked,
+                MedianTemperature.Checked,
+                MinTemperature.Checked,
+                MaxTemperature.Checked,
+                StandardDeviation.Checked,
+                ModeTemperature.Checked,
+                RangeTemperature.Checked
+                );
+
+
+
+            Console.WriteLine(selectedOptions);
         }
     }
 }
