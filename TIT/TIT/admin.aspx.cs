@@ -41,7 +41,7 @@ namespace TIT
 
             Dictionary<string, object> properties = new Dictionary<string, object>();
             properties.Add("name", station.Name);
-            properties.Add("country", station.Country);
+            properties.Add("country", station.CountryName);
             properties.Add("latitude", position.Latitude);
             properties.Add("longitude", position.Longitude);
             //properties.Add("altitude", position.Altitude);
@@ -76,17 +76,7 @@ namespace TIT
         private void createGeoJson()
         {
 
-            //List<Station> list_station = new List<Station>();
-            //list_station.Add(new Station(1, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
-            //list_station.Add(new Station(2, "Limburg", "Deutschland", "50.383", "8.067"));
-            //list_station.Add(new Station(3, "Berlin", "Deutschland", "52.52437", "13.41053"));
-            //list_station.Add(new Station(4, "Otterndorf", "Deutschland", "53.817", "8.900"));
-            //list_station.Add(new Station(5, "Cuxhaven", "Deutschland", "53.867", "8.700"));
-            //list_station.Add(new Station(6, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
-
-
-
-            Statics.getListStationsAll();
+            Statics.getListStationsAllByDatasource("meteo");
             FeatureCollection collection = new FeatureCollection();
             foreach (Station station in Statics.list_stations)
             {

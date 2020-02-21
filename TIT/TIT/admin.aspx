@@ -24,17 +24,21 @@
 
         map.on('load', function () {
 
-            var cookie = getCookie('GeoJson');
+            createPopup('METEO');
+            createPopup('NOAA');
 
-            if (cookie == "") {
+            //var cookie = getCookie('GeoJson');
+
+            //if (cookie == "") {
+
 
                 //alert('FEHLER');
 
-            } else {
+            //} else {
 
-                sendJson();
-                createPopup('Stations');
-            }
+            //    sendJson();
+                //createPopup('Stations');
+            //}
         });
 
         //Functions

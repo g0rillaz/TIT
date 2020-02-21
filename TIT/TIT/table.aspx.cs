@@ -51,7 +51,7 @@ namespace TIT
         private void refreshStations()
         {
             string IsoCode = dropdown_country.SelectedItem.Value;
-            Statics.getListStationsByCountry(IsoCode);
+            Statics.getListStationsByCountry(IsoCode, "meteo");
 
             dropdown_station.DataSource = Statics.list_stations;
             dropdown_station.DataTextField = "Name";

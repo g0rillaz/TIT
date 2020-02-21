@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,15 +41,25 @@ namespace TITLib
         }
 
         /// <summary>
-        /// Lädt eine Liste aller Stationen
+        /// Lädt eine Liste aller Stationen einer bestimmten Datenquelle
         /// </summary>
-        public static void getListStationsAll()
+        public static void getListStationsAllByDatasource(string datasource)
         {
             list_stations = new List<Station>();
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
+            string command;
 
-            string command = "SELECT * FROM [dbo].[V_STATIONS_METEO-WITHOUT_ELEV]";
+            if (datasource == "meteo")
+            {
+                command = $"SELECT ID, NUMBER, NAME, COUNTRY_ID, COUNTRY_NAME, COUNTRY_ISO, LAT, LON FROM V_STATIONS_METEO";
+
+            }
+            else
+            {
+                command = $"SELECT ID, NUMBER, NAME, COUNTRY_ID, COUNTRY_NAME, COUNTRY_ISO, LAT, LON FROM V_STATIONS_NOAA";
+            }
+
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)
@@ -57,12 +68,11 @@ namespace TITLib
                 station.ID = Convert.ToInt32(table.Rows[i]["ID"]);
                 station.Number = table.Rows[i]["NUMBER"].ToString();
                 station.Name = table.Rows[i]["NAME"].ToString();
-                //station.Country = table.Rows[i]["COUNTRY_NAME_TMP"].ToString();
-                station.Country = table.Rows[i]["COUNTRY_ID"].ToString();
-
-                //LON UND LAT AKTUELL GETAUSCHT
-                station.Longitude = table.Rows[i]["LAT"].ToString();
-                station.Latitude = table.Rows[i]["LON"].ToString();
+                station.CountryId = table.Rows[i]["COUNTRY_ID"].ToString();
+                station.CountryName = table.Rows[i]["COUNTRY_NAME"].ToString();
+                station.CountryIso = table.Rows[i]["COUNTRY_ISO"].ToString();
+                station.Longitude = table.Rows[i]["LON"].ToString();
+                station.Latitude = table.Rows[i]["LAT"].ToString();
 
                 list_stations.Add(station);
             }
@@ -73,13 +83,23 @@ namespace TITLib
         /// Lädt eine Liste aller Stationen eines bestimmten Landes
         /// </summary>
         /// <param name="isocode"></param>
-        public static void getListStationsByCountry(string isocode)
+        public static void getListStationsByCountry(string isocode, string datasource)
         {
             list_stations = new List<Station>();
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
+            string command;
 
-            string command = $"SELECT * FROM PTIT_V_STAT_METEO WHERE COUNTRY_NAME_TMP='{isocode}'";
+            if(datasource == "meteo")
+            {
+                command = $"SELECT ID, NUMBER, NAME, COUNTRY_ID, COUNTRY_NAME, COUNTRY_ISO, LAT, LON FROM V_STATIONS_METEO WHERE COUNTRY_ISO='{isocode}'";
+
+            } else
+            {
+                command = $"SELECT ID, NUMBER, NAME, COUNTRY_ID, COUNTRY_NAME, COUNTRY_ISO, LAT, LON FROM V_STATIONS_NOAA WHERE COUNTRY_ISO='{isocode}'";
+            }
+
+
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)
@@ -88,7 +108,9 @@ namespace TITLib
                 station.ID = Convert.ToInt32(table.Rows[i]["ID"]);
                 station.Number = table.Rows[i]["NUMBER"].ToString();
                 station.Name = table.Rows[i]["NAME"].ToString();
-                station.Country = table.Rows[i]["COUNTRY_NAME_TMP"].ToString();
+                station.CountryId = table.Rows[i]["COUNTRY_ID"].ToString();
+                station.CountryName = table.Rows[i]["COUNTRY_NAME"].ToString();
+                station.CountryIso = table.Rows[i]["COUNTRY_ISO"].ToString();
                 station.Longitude = table.Rows[i]["LON"].ToString();
                 station.Latitude = table.Rows[i]["LAT"].ToString();
 
@@ -96,14 +118,58 @@ namespace TITLib
             }
         }
 
-        //LÄDT die benötigten Wetterdaten
-        public static void getWeatherData()
+        /// <summary>
+        /// Lädt alle Wettedaten mit den vorgegebenen Bedingungen
+        /// </summary>
+        public static void getWeatherData(Country country, Station station, Condition condition)
         {
             List<WeatherData> list_weatherdata = new List<WeatherData>();
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
+            string command = $"SELECT ";
 
-            string command = $"SELECT * FROM PTIT_V_STAT_METEO WHERE COUNTRY_NAME_TMP='{isocode}'";
+
+            if(condition.Raw)
+            {
+                command += "RAW, ";
+            }
+
+            if(condition.Mean)
+            {
+                command += "MEAN, ";
+            }
+
+            if (condition.Median)
+            {
+                command += "MEDIAN, ";
+            }
+
+            if (condition.Min)
+            {
+                command += "MIN, ";
+            }
+
+            if (condition.Max)
+            {
+                command += "MAX, ";
+            }
+
+            if (condition.Deviation)
+            {
+                command += "DEVIATION, ";
+            }
+
+            if (condition.Mode)
+            {
+                command += "MODE, ";
+            }
+
+            if (condition.Range)
+            {
+                command += "RANGE, ";
+            }
+
+            command += "ID ... FROM ... WHERE ...";
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)

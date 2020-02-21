@@ -38,13 +38,33 @@ namespace TITLib
             }
         }
 
-        private string _country;
-        public string Country
+        private string _countryId;
+        public string CountryId
         {
-            get => _country;
+            get => _countryId;
             set
             {
-                _country = value;
+                _countryId = value;
+            }
+        }
+
+        private string _countryName;
+        public string CountryName
+        {
+            get => _countryName;
+            set
+            {
+                _countryName = value;
+            }
+        }
+
+        private string _countryIso;
+        public string CountryIso
+        {
+            get => _countryIso;
+            set
+            {
+                _countryIso = value;
             }
         }
 
@@ -73,14 +93,16 @@ namespace TITLib
 
         }
 
-        public Station(int iD, string name, string country, string latitude, string longitude)
+        public Station(int iD, string number, string name, string countryId, string countryName, string countryIso, string latitude, string longitude)
         {
             ID = iD;
+            Number = number;
             Name = name;
-            Country = country;
-            Longitude = longitude;
+            CountryId = countryId;
+            CountryName = countryName;
+            CountryIso = countryIso;
             Latitude = latitude;
+            Longitude = longitude;
         }
-
     }
 }
