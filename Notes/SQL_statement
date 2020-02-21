@@ -1,0 +1,6 @@
+CREATE TABLE cube_test (
+id int not null primary key,
+time int,
+temp int,
+country int,
+);
