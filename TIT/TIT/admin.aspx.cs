@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using TITLib;
 
@@ -17,6 +18,19 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            createControl();
+
+            if (!IsPostBack)
+            {
+                loadInfo();
+            }
+        }
+
+        private void createControl()
+        {
+            HtmlControl control = new HtmlGenericControl();
+            control = baum;
+
 
         }
 
@@ -27,7 +41,7 @@ namespace TIT
 
             Dictionary<string, object> properties = new Dictionary<string, object>();
             properties.Add("name", station.Name);
-            properties.Add("country", station.Country);
+            properties.Add("country", station.CountryName);
             properties.Add("latitude", position.Latitude);
             properties.Add("longitude", position.Longitude);
             //properties.Add("altitude", position.Altitude);
@@ -40,7 +54,7 @@ namespace TIT
         private Feature createPolygonFeature(List<Station> list_station, string areaname)
         {
             List<Position> list_position = new List<Position>();
-            foreach(Station station in list_station)
+            foreach (Station station in list_station)
             {
                 Position position = new Position(station.Latitude, station.Longitude);
                 list_position.Add(position);
@@ -62,21 +76,27 @@ namespace TIT
         private void createGeoJson()
         {
 
-            List<Station> list_station = new List<Station>();
-            list_station.Add(new Station(1, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
-            list_station.Add(new Station(2, "Limburg", "Deutschland", "50.383", "8.067"));
-            list_station.Add(new Station(3, "Berlin", "Deutschland", "52.52437", "13.41053"));
-            list_station.Add(new Station(4, "Otterndorf", "Deutschland", "53.817", "8.900"));
-            list_station.Add(new Station(5, "Cuxhaven", "Deutschland", "53.867", "8.700"));
-            list_station.Add(new Station(6, "Bremerhaven", "Deutschland", "53.55021", "8.57673"));
-
+            Statics.getListStationsAllByDatasource("meteo");
             FeatureCollection collection = new FeatureCollection();
-            foreach (Station station in list_station)
+            foreach (Station station in Statics.list_stations)
             {
+                if (Decimal.TryParse(station.Latitude, out decimal latitude) && Decimal.TryParse(station.Longitude, out decimal longitude))
+                {
+
+                    station.Latitude = Convert.ToString(latitude, System.Globalization.CultureInfo.InvariantCulture);
+                    station.Longitude = Convert.ToString(longitude, System.Globalization.CultureInfo.InvariantCulture);
+
+                }
+                else
+                {
+                    station.Latitude = "0";
+                    station.Longitude = "0";
+                }
+
                 collection.Features.Add(createPointFeature(station));
             }
 
-            collection.Features.Add(createPolygonFeature(list_station, "Area"));
+            //collection.Features.Add(createPolygonFeature(list_station, "Area"));
 
             //LineString line = new LineString(new[] { position, position2 });
 
@@ -92,6 +112,16 @@ namespace TIT
         {
             Response.Cookies[name].Value = input;
             Response.Cookies[name].Expires = DateTime.Now.AddMinutes(5);
+        }
+
+
+        private void loadInfo()
+        {
+            Statics.getListCountrys();
+
+            gridview_main.DataSource = Statics.list_country.OrderBy(x => x.Name);
+            gridview_main.DataBind();
+
         }
 
         protected void button_createGeoJson_Click(object sender, EventArgs e)

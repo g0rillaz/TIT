@@ -51,11 +51,12 @@ namespace TIT
             gridview_main.DataBind();
         }
 
-        //private void refreshStations()
-        //{
-        //    string IsoCode = Region.SelectedItem.Value;
-        //    Statics.getListStationsByCountry(IsoCode);
-
+        private void refreshStations()
+        {
+            
+            string IsoCode = Region.SelectedItem.Value;
+            Statics.getListStationsByCountry(IsoCode, "meteo");
+        }
         //    dropdown_station.DataSource = Statics.list_stations;
         //    dropdown_station.DataTextField = "Name";
         //    dropdown_station.DataValueField = "Number";

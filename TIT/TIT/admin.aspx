@@ -24,17 +24,21 @@
 
         map.on('load', function () {
 
-            var cookie = getCookie('GeoJson');
+            createPopup('METEO');
+            createPopup('NOAA');
 
-            if (cookie == "") {
+            //var cookie = getCookie('GeoJson');
+
+            //if (cookie == "") {
+
 
                 //alert('FEHLER');
 
-            } else {
+            //} else {
 
-                sendJson();
-                createPopup('Stations');
-            }
+            //    sendJson();
+                //createPopup('Stations');
+            //}
         });
 
         //Functions
@@ -125,8 +129,31 @@
             return "";
         };
     </script>
+    <div ID="baum" runat="server">
+
+    </div>
 
     <asp:Button ID="button_createGeoJson" OnClick="button_createGeoJson_Click" runat="server" Text="Create new GeoJson" />
     <%--<asp:Button ID="button_uploadJson" OnClientClick="sendJson(this)" runat="server" Text="Upload Json"/>--%>
     <%--<button id="button_uploadJson" onclick="sendJson(this)" title="Upload Json">Upload Json</button>--%>
+
+     <asp:GridView ID="gridview_main" runat="server" AutoGenerateColumns="False" CssClass="gridview_main">
+            <Columns>
+                <asp:TemplateField HeaderText="ID" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_ID" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Name" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_Name" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="IsoCode" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+                    <ItemTemplate>
+                        <asp:Label ID="gridview_IsoCode" runat="server" Text='<%# Eval("IsoCode") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
 </asp:Content>
