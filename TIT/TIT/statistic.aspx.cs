@@ -13,6 +13,7 @@ namespace TIT
     public partial class statistic : System.Web.UI.Page
     {
         private Control ucUserControl;
+        private int counter = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +22,7 @@ namespace TIT
             {
                 loadInfo();
             }
-                
+
         }
 
         private void loadInfo()
@@ -36,10 +37,6 @@ namespace TIT
             Region.DataBind();
 
             //Test Start
-            //dropdown_station.DataSource = list_country;
-            //dropdown_station.DataTextField = "Name";
-            //dropdown_station.DataValueField = "IsoCode";
-            //dropdown_station.DataBind();
 
             //dropdown_sort.DataSource = list_country;
             //dropdown_sort.DataTextField = "Name";
@@ -53,17 +50,15 @@ namespace TIT
 
         private void refreshStations()
         {
-            
+
             string IsoCode = Region.SelectedItem.Value;
             Statics.getListStationsByCountry(IsoCode, "meteo");
+
+            Station.DataSource = Statics.list_stations;
+            Station.DataTextField = "Name";
+            Station.DataValueField = "Number";
+            Station.DataBind();
         }
-        //    dropdown_station.DataSource = Statics.list_stations;
-        //    dropdown_station.DataTextField = "Name";
-        //    dropdown_station.DataValueField = "Number";
-        //    dropdown_station.DataBind();
-
-
-        //}
 
         //private void getData()
         //{
@@ -88,46 +83,63 @@ namespace TIT
 
         protected void Region_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //refreshStations();
-            
+            refreshStations();
         }
 
         protected void getDataButton_Click(object sender, EventArgs e)
         {
 
-            SelectedOptions selectedOptions = new SelectedOptions(
-                Modulname.Text, 
-                FromDate.Text,
-                ToDate.Text,
-                Region.Text,
-                Station.Text,
-                Interval.Text,
-                OrderedBy.Text,
-                RawTemperature.Checked,
-                MeanTemperature.Checked,
-                MedianTemperature.Checked,
-                MinTemperature.Checked,
-                MaxTemperature.Checked,
-                StandardDeviation.Checked,
-                ModeTemperature.Checked,
-                RangeTemperature.Checked
-                );
+            //SelectedOptions selectedOptions = new SelectedOptions(
+            //    Modulname.Text, 
+            //    FromDate.Text,
+            //    ToDate.Text,
+            //    Region.Text,
+            //    Station.Text,
+            //    Interval.Text,
+            //    OrderedBy.Text,
+
+            //    );
+
+            Condition condition = new Condition();
+
+            condition.Raw = RawTemperature.Checked;
+            condition.Mean = MeanTemperature.Checked;
+            condition.Median = MedianTemperature.Checked;
+            condition.Min = MinTemperature.Checked;
+            condition.Max = MaxTemperature.Checked;
+            condition.Deviation = StandardDeviation.Checked;
+            condition.Mode = ModeTemperature.Checked;
+            condition.Range = RangeTemperature.Checked;
+
+            Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
+            TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
 
 
-            Console.WriteLine(selectedOptions);
+            Statics.getWeatherData(country, station, condition);
+
+
+
+            //Console.WriteLine(selectedOptions);
         }
-    
+
         protected void createNewModule_Click(object sender, EventArgs e)
         {
 
-           
-            Console.WriteLine("test");
-
-            ucUserControl = (Control)Page.LoadControl("ModuleComponent.ascx");
-            dwd.Controls.Add(ucUserControl);
-
+            Control control = new Control();
+            ModuleComponent component = new ModuleComponent();
+            control = component as Control;
             
+            dwd.Controls.Add(control);
+
+            Console.WriteLine("test");
+          
+            //ucUserControl = (Control)Page.LoadControl("ModuleComponent.ascx");
+            //dwd.Controls.Add(ucUserControl);
+            //dwd.InnerHtml = ucUserControl;
+            //MyPlaceholder.Controls.Add(new Literal() { Text = "<div>some markup " + counter + "</div>" });
+            //LiteralControl lit = new LiteralControl("ModuleComponent.ascx");
+            //Page.Controls.Add(lit);
         }
     }
 }
