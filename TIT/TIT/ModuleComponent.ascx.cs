@@ -15,10 +15,10 @@ namespace TIT
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
-            {
+            //if (!IsPostBack)
+            //{
                 loadInfo();
-            }
+            //}
 
         }
 

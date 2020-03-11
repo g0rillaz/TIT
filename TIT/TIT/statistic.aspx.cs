@@ -30,19 +30,23 @@ namespace TIT
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            createNewModule.Click += new EventHandler(createNewModule_Click);
-
+            //if (!IsPostBack)
+            //{
+                createNewModule.Click += new EventHandler(createNewModule_Click);
+            //Displays on module by default
             for (int i = 1; i <= Count; i++)
             {
                 LoadUserControl(i);
             }
+        //}
 
-           
 
-        }
-       
 
-        protected void createNewModule_Click(object sender, EventArgs e)
+
+    }
+
+
+    protected void createNewModule_Click(object sender, EventArgs e)
         {
             Count++;
             LoadUserControl(Count);
