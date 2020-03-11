@@ -18,20 +18,11 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            createControl();
 
             if (!IsPostBack)
             {
                 loadInfo();
             }
-        }
-
-        private void createControl()
-        {
-            HtmlControl control = new HtmlGenericControl();
-            control = baum;
-
-
         }
 
         private Feature createPointFeature(Station station)
@@ -76,7 +67,7 @@ namespace TIT
         private void createGeoJson()
         {
 
-            Statics.getListStationsAllByDatasource("meteo");
+            Statics.getListStationsAllByDatasource("noaa");
             FeatureCollection collection = new FeatureCollection();
             foreach (Station station in Statics.list_stations)
             {

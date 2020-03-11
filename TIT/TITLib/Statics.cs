@@ -99,7 +99,7 @@ namespace TITLib
                 command = $"SELECT ID, NUMBER, NAME, COUNTRY_ID, COUNTRY_NAME, COUNTRY_ISO, LAT, LON FROM V_STATIONS_NOAA WHERE COUNTRY_ISO='{isocode}'";
             }
 
-
+            
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)
@@ -119,7 +119,9 @@ namespace TITLib
         }
 
         /// <summary>
-        /// Lädt alle Wettedaten mit den vorgegebenen Bedingungen
+        /// Fragt alle Wettedaten mit den vorgegebenen Bedingungen bei der Datenbank ab.
+        /// Zur DB Abfrage wird eine Stored Procedure verwendet
+        /// Übergeben werden Land, Station und Bedingungen
         /// </summary>
         public static void getWeatherData(Country country, Station station, Condition condition)
         {
@@ -169,7 +171,7 @@ namespace TITLib
                 command += "RANGE, ";
             }
 
-            command += "ID ... FROM ... WHERE ...";
+            command += $"ID ... FROM ... WHERE datefrom = {condition.DateFrom} AND dateto = {condition.DateTo}...";
             DataTable table = dBConnection.readDataSql(command);
 
             for (int i = 0; i < table.Rows.Count; i++)

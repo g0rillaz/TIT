@@ -8,6 +8,26 @@ namespace TITLib
 {
     public class Condition
     {
+        private DateTime _dateFrom;
+        public DateTime DateFrom
+        {
+            get => _dateFrom;
+            set
+            {
+                _dateFrom = value;
+            }
+        }
+
+        private DateTime _dateTo;
+        public DateTime DateTo
+        {
+            get => _dateTo;
+            set
+            {
+                _dateTo = value;
+            }
+        }
+
         private bool _raw;
         public bool Raw
         {

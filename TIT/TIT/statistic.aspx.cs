@@ -14,11 +14,11 @@ namespace TIT
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 loadInfo();
             }
-                
+
         }
 
         private void loadInfo()
@@ -50,13 +50,14 @@ namespace TIT
 
         private void refreshStations()
         {
-            string IsoCode = dropdown_country.SelectedItem.Value;
-            Statics.getListStationsByCountry(IsoCode, "meteo");
 
-            dropdown_station.DataSource = Statics.list_stations;
-            dropdown_station.DataTextField = "Name";
-            dropdown_station.DataValueField = "Number";
-            dropdown_station.DataBind();
+            //string IsoCode = dropdown_country.SelectedItem.Value;
+            //Statics.getListStationsByCountry(IsoCode, "meteo");
+
+            //dropdown_station.DataSource = Statics.list_stations;
+            //dropdown_station.DataTextField = "Name";
+            //dropdown_station.DataValueField = "Number";
+            //dropdown_station.DataBind();
 
 
         }
@@ -90,27 +91,27 @@ namespace TIT
         protected void getDataButton_Click(object sender, EventArgs e)
         {
 
-            SelectedOptions selectedOptions = new SelectedOptions(
-                Modulname.Text, 
-                FromDate.Text,
-                ToDate.Text,
-                Region.Text,
-                Station.Text,
-                Interval.Text,
-                OrderedBy.Text,
-                RawTemperature.Checked,
-                MeanTemperature.Checked,
-                MedianTemperature.Checked,
-                MinTemperature.Checked,
-                MaxTemperature.Checked,
-                StandardDeviation.Checked,
-                ModeTemperature.Checked,
-                RangeTemperature.Checked
-                );
+            ////SelectedOptions selectedOptions = new SelectedOptions(
+            ////    Modulname.Text,
+            ////    FromDate.Text,
+            ////    ToDate.Text,
+            ////    Region.Text,
+            ////    Station.Text,
+            ////    Interval.Text,
+            ////    OrderedBy.Text,
+            ////    RawTemperature.Checked,
+            ////    MeanTemperature.Checked,
+            ////    MedianTemperature.Checked,
+            ////    MinTemperature.Checked,
+            ////    MaxTemperature.Checked,
+            ////    StandardDeviation.Checked,
+            ////    ModeTemperature.Checked,
+            ////    RangeTemperature.Checked
+            ////    );
 
 
 
-            Console.WriteLine(selectedOptions);
+            ////Console.WriteLine(selectedOptions);
         }
     }
 }
