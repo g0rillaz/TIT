@@ -12,11 +12,33 @@ namespace TIT
 {
     public partial class statistic : System.Web.UI.Page
     {
-        private Control ucUserControl;
-        private int counter = 0;
+        private Control userControll;
+        private int counter;
+        private List<Control> moduleList;
+
+        int Count
+        {
+            get
+            {
+                if (ViewState["ControlCount"] == null)
+                    ViewState["ControlCount"] = 1;
+                return (int)ViewState["ControlCount"];
+            }
+            set
+            {
+                ViewState["ControlCount"] = value;
+            }
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnAddUC.Click += new EventHandler(btnAddUC_Click);
+
+            for (int i = 1; i <= Count; i++)
+            {
+                LoadUserControl(i);
+            }
 
             if (!IsPostBack)
             {
@@ -126,20 +148,31 @@ namespace TIT
         protected void createNewModule_Click(object sender, EventArgs e)
         {
 
-            Control control = new Control();
-            ModuleComponent component = new ModuleComponent();
-            control = component as Control;
-            
-            dwd.Controls.Add(control);
 
-            Console.WriteLine("test");
-          
-            //ucUserControl = (Control)Page.LoadControl("ModuleComponent.ascx");
-            //dwd.Controls.Add(ucUserControl);
-            //dwd.InnerHtml = ucUserControl;
-            //MyPlaceholder.Controls.Add(new Literal() { Text = "<div>some markup " + counter + "</div>" });
-            //LiteralControl lit = new LiteralControl("ModuleComponent.ascx");
-            //Page.Controls.Add(lit);
+            userControll = (Control)Page.LoadControl("ModuleComponent.ascx");
+
+            //List<Control> currentModuleList = new List<Control>();
+            //currentModuleList.Add(userControll);
+
+            //if (ViewState["moduleList"] != null)
+            //{
+            //ViewState.Add("moduleList", currentModuleList);
+            //}
+
         }
+        void btnAddUC_Click(object sender, EventArgs e)
+        {
+            Count++;
+            LoadUserControl(Count);
+        }
+
+        void LoadUserControl(int index)
+        {
+            Control ctl = this.LoadControl("ModuleComponent.ascx");
+            ctl.ID = string.Format("userControl_{0}", index);
+            this.ucHolder.Controls.Add(ctl);
+        }
+
+        
     }
 }

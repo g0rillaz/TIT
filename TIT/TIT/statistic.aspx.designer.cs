@@ -42,31 +42,22 @@ namespace TIT
         protected global::System.Web.UI.WebControls.Button createNewModule;
 
         /// <summary>
-        /// PlaceHolder1-Steuerelement
+        /// btnAddUC-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btnAddUC;
 
         /// <summary>
-        /// MyPlaceholder-Steuerelement
+        /// ucHolder-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder MyPlaceholder;
-
-        /// <summary>
-        /// dwd-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dwd;
+        protected global::System.Web.UI.WebControls.PlaceHolder ucHolder;
 
         /// <summary>
         /// Modulname-Steuerelement

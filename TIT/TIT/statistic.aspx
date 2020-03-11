@@ -10,11 +10,12 @@
 
         <div class="getSelectedOptions">
         <asp:Button ID="getDataButton" Text="GetData" OnClick="getDataButton_Click" runat="server" />
-        <asp:Button ID="createNewModule" Text="+ Module" OnClick="createNewModule_Click"  runat="server" />
+        <asp:Button ID="createNewModule" Text="+ Module" OnClick="createNewModule_Click"  runat="server"  />
 
-        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-        <asp:PlaceHolder ID="MyPlaceholder" runat="server"></asp:PlaceHolder>
-        <div id="dwd" runat="server"></div>
+        
+            
+            <asp:Button ID="btnAddUC" runat="server" Text="Add User Control" />
+            <asp:PlaceHolder ID="ucHolder" runat="server"></asp:PlaceHolder>
         <asp:TextBox  ID="Modulname" Text="Modulname(Modul1)" runat="server"></asp:TextBox>
         <asp:TextBox  textmode="Date" ID="FromDate"  runat="server"></asp:TextBox>
         <asp:TextBox  textmode="Date" ID="ToDate" runat="server"></asp:TextBox>
