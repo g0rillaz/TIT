@@ -12,7 +12,7 @@ namespace TIT
 {
     public partial class statistic : System.Web.UI.Page
     {
-
+        //Counting variable according to the ViewState
         int Count
         {
             get
@@ -27,31 +27,34 @@ namespace TIT
             }
         }
 
-
+        /// <summary>
+        /// Gets triggered by every reload
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-                createNewModule.Click += new EventHandler(createNewModule_Click);
-            //Displays on module by default
+            //Does display one module by default
             for (int i = 1; i <= Count; i++)
             {
                 LoadUserControl(i);
             }
-        //}
+        }
 
-
-
-
-    }
-
-
-    protected void createNewModule_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Gets clicking on adding new module
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void createNewModule_Click(object sender, EventArgs e)
         {
             Count++;
             LoadUserControl(Count);
         }
-
+        /// <summary>
+        /// Does load the controlls
+        /// </summary>
+        /// <param name="index"></param>
         void LoadUserControl(int index)
         {
             Control ctl = this.LoadControl("ModuleComponent.ascx");
