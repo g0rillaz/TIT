@@ -39,6 +39,7 @@ namespace TITLib
         public void createConnection(string connectionstring)
         {
             Connection = new SqlConnection(connectionstring);
+
         }
 
         /// <summary>
@@ -87,5 +88,24 @@ namespace TITLib
             return dataTable;
         }
 
+        public DataTable readDataWithStoredProcedure(string command, List<SqlParameter> sqlParameters)
+        {
+            DataTable dataTable = new DataTable();
+            createCommand(command);
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.CommandTimeout = 0;
+
+            foreach  (SqlParameter parameter in sqlParameters)
+            {
+                Command.Parameters.Add(parameter);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Command;
+            
+            da.Fill(dataTable);
+
+            return dataTable;
+        }
     }
 }

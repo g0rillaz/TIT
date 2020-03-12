@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIT", "TIT\TIT.csproj", "{E1E0B1EA-E5C3-456A-BAC7-578C4393189C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TITLib", "TITLib\TITLib.csproj", "{56D3C347-58F6-4506-B584-2E13FA488FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TITTest", "TITTest\TITTest.csproj", "{CC266D5A-A067-4B46-9FB6-EEB48F44A307}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{56D3C347-58F6-4506-B584-2E13FA488FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56D3C347-58F6-4506-B584-2E13FA488FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56D3C347-58F6-4506-B584-2E13FA488FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC266D5A-A067-4B46-9FB6-EEB48F44A307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC266D5A-A067-4B46-9FB6-EEB48F44A307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC266D5A-A067-4B46-9FB6-EEB48F44A307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC266D5A-A067-4B46-9FB6-EEB48F44A307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

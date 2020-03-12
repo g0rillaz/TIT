@@ -10,7 +10,7 @@ namespace TITLib
 {
     public static class Statics
     {
-        public static string connectionstring = "Data Source=s-mssql2019.it.gla; Initial Catalog=ProjectTIT; User id=IN18a; Password=IN18BSDGG;";
+        public static string connectionstring = "Data Source=s-mssql2019.it.gla; Initial Catalog=ProjectTIT; User id=IN18a; Password=IN18BSDGG; Connection Timeout=0;";
         //Server=localhost;Database=IN18;User Id=IN18a;Password=IN18BSDGG;";
         private static DBConnection dBConnection;
         public static List<Country> list_country;
@@ -125,63 +125,91 @@ namespace TITLib
         /// </summary>
         public static void getWeatherData(Country country, Station station, Condition condition)
         {
+
+            //string command = $"SELECT ";
+
+            //if(condition.Raw)
+            //{
+            //    command += "RAW, ";
+            //}
+
+            //if(condition.Mean)
+            //{
+            //    command += "MEAN, ";
+            //}
+
+            //if (condition.Median)
+            //{
+            //    command += "MEDIAN, ";
+            //}
+
+            //if (condition.Min)
+            //{
+            //    command += "MIN, ";
+            //}
+
+            //if (condition.Max)
+            //{
+            //    command += "MAX, ";
+            //}
+
+            //if (condition.Deviation)
+            //{
+            //    command += "DEVIATION, ";
+            //}
+
+            //if (condition.Mode)
+            //{
+            //    command += "MODE, ";
+            //}
+
+            //if (condition.Range)
+            //{
+            //    command += "RANGE, ";
+            //}
+
+            //command += $"ID ... FROM ... WHERE datefrom = {condition.DateFrom} AND dateto = {condition.DateTo}...";
+            //DataTable table = dBConnection.readDataSql(command);
+
+            //string command = "USE ProjectTIT; GO; EXEC dbo.SP_DATA_NOAA @INTERVALL, @SHW_MEAN, @SHW_MEDIAN, @SHW_MIN, @SHW_MAX, @SHW_SDEV, @SHW_MODE, @SHW_RANGE, @WH_DATE_BIT, @WH_DATE_BEGIN, @WH_DATE_END, @WH_COUNTRY_BIT, @WH_COUNTRY, @WH_STATION_BIT, @WH_STATION, @ORDERCOLUMN, @ORDERDESC;";
+            
             List<WeatherData> list_weatherdata = new List<WeatherData>();
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
-            string command = $"SELECT ";
+
+            string command = "dbo.SP_DATA_NOAA";
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+
+            sqlParameters.Add(new SqlParameter("INTERVALL", "'d'"));
+            sqlParameters.Add(new SqlParameter("USE_RAW", '0'));
+            sqlParameters.Add(new SqlParameter("SHW_MEAN", Convert.ToInt32(condition.Mean)));
+            sqlParameters.Add(new SqlParameter("SHW_MEDIAN", Convert.ToInt32(condition.Median)));
+            sqlParameters.Add(new SqlParameter("SHW_MIN", Convert.ToInt32(condition.Min)));
+            sqlParameters.Add(new SqlParameter("SHW_MAX", Convert.ToInt32(condition.Max)));
+            sqlParameters.Add(new SqlParameter("SHW_SDEV", Convert.ToInt32(condition.Deviation)));
+            sqlParameters.Add(new SqlParameter("SHW_MODE", Convert.ToInt32(condition.Mode)));
+            sqlParameters.Add(new SqlParameter("SHW_RANGE", Convert.ToInt32(condition.Range)));
+            sqlParameters.Add(new SqlParameter("WH_DATE_BIT", '1'));
+            sqlParameters.Add(new SqlParameter("WH_DATE_BEGIN", condition.DateFrom));
+            sqlParameters.Add(new SqlParameter("WH_DATE_END", condition.DateTo));
+            sqlParameters.Add(new SqlParameter("WH_COUNTRY_BIT", '1'));
+            sqlParameters.Add(new SqlParameter("WH_COUNTRY", country.ID));
+            sqlParameters.Add(new SqlParameter("WH_STATION_BIT", 1));
+            sqlParameters.Add(new SqlParameter("WH_STATION", station.ID));
+            sqlParameters.Add(new SqlParameter("ORDERCOLUMN", "'median'"));
+            sqlParameters.Add(new SqlParameter("ORDERDESC", '0'));
+
+            dBConnection.readDataWithStoredProcedure(command, sqlParameters);
 
 
-            if(condition.Raw)
-            {
-                command += "RAW, ";
-            }
+            //for (int i = 0; i < table.Rows.Count; i++)
+            //{
+            //    WeatherData weatherdata = new WeatherData();
+            //    weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+            //station.Number = table.Rows[i]["NUMBER"].ToString();
 
-            if(condition.Mean)
-            {
-                command += "MEAN, ";
-            }
-
-            if (condition.Median)
-            {
-                command += "MEDIAN, ";
-            }
-
-            if (condition.Min)
-            {
-                command += "MIN, ";
-            }
-
-            if (condition.Max)
-            {
-                command += "MAX, ";
-            }
-
-            if (condition.Deviation)
-            {
-                command += "DEVIATION, ";
-            }
-
-            if (condition.Mode)
-            {
-                command += "MODE, ";
-            }
-
-            if (condition.Range)
-            {
-                command += "RANGE, ";
-            }
-
-            command += $"ID ... FROM ... WHERE datefrom = {condition.DateFrom} AND dateto = {condition.DateTo}...";
-            DataTable table = dBConnection.readDataSql(command);
-
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                WeatherData weatherdata = new WeatherData();
-                weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
-                //station.Number = table.Rows[i]["NUMBER"].ToString();
-
-                list_weatherdata.Add(weatherdata);
-            }
+            //    list_weatherdata.Add(weatherdata);
+            //}
         }
 
     }

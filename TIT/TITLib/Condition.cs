@@ -8,6 +8,7 @@ namespace TITLib
 {
     public class Condition
     {
+
         private DateTime _dateFrom;
         public DateTime DateFrom
         {

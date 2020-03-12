@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TITLib.Statics">
-    <Position X="1.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACBAAAAAAAAAAAAAAAEEEAAAAAAgAAAAAAACAAAAACA=</HashCode>
-      <FileName>Statics.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TITLib.Station">
     <Position X="6.25" Y="2" Width="2.25" />
     <TypeIdentifier>
@@ -38,8 +31,15 @@
   <Class Name="TITLib.DBConnection">
     <Position X="13.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAEAAiAAAAEAAAAABAAAAAAAAAAAAAAEABAABAA=</HashCode>
+      <HashCode>AAABAAEAAiAAAAEAAAAABAAAAAAAAAAAAAAEABQABAA=</HashCode>
       <FileName>DBConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TITLib.Statics">
+    <Position X="1.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBAAAAAAAAAAAAAAAEEEAAAAAAgAAAAAAACAAAAACA=</HashCode>
+      <FileName>Statics.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
