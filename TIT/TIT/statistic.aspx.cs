@@ -57,9 +57,9 @@ namespace TIT
         /// <param name="index"></param>
         void LoadUserControl(int index)
         {
-            Control ctl = this.LoadControl("ModuleComponent.ascx");
-            ctl.ID = string.Format("userControl_{0}", index);
-            this.ModulePlaceholder.Controls.Add(ctl);
+            Control moduleCmpt = this.LoadControl("ModuleComponent.ascx");
+            moduleCmpt.ID = string.Format("userControl_{0}", index);
+            this.ModulePlaceholder.Controls.Add(moduleCmpt);
         }
 
         
