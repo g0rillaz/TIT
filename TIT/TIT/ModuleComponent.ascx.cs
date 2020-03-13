@@ -77,16 +77,23 @@ namespace TIT
             condition.Deviation = StandardDeviation.Checked;
             condition.Mode = ModeTemperature.Checked;
             condition.Range = RangeTemperature.Checked;
+            condition.DateFrom = Convert.ToDateTime(FromDate.Text);
+            condition.DateTo = Convert.ToDateTime(ToDate.Text);
+            condition.Intervall = "";
+            condition.OrderBy = "";
+            condition.OrderDirection = "";
 
 
-            var test = Table.GridLines;
+
 
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
-            Statics.getWeatherData(country, station, condition);
+            List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
 
+            gridview_main.DataSource = list_weatherdata;
+            gridview_main.DataBind();
 
         }
 
