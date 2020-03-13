@@ -56,13 +56,24 @@
                         <div class="container-fluid">
                             <div class="row mb-1">
                                 <div class="col-sm">
-                                    <asp:DropDownList ID="Region" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control p-3" runat="server"></asp:DropDownList>
-                                    <asp:DropDownList ID="Station" CssClass="form-control p-3" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="Source" CssClass="form-control p-3" runat="server" >
+                                        <asp:ListItem Value="Source">Source</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Region" CssClass="form-control p-3" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                        <asp:ListItem Value="Region">Region</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Station" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="Station">Station</asp:ListItem>
+                                    </asp:DropDownList>
                                     <br>
                                 </div>
                                 <div class="col-sm">
-                                    <asp:DropDownList ID="Interval" CssClass="form-control p-3" runat="server"></asp:DropDownList>
-                                    <asp:DropDownList ID="OrderedBy" CssClass="form-control p-3" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="Interval" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="Interval">Interval</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="OrderedBy" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="OrderedBy">OrderedBy</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
 
                                 <div class="col-sm">

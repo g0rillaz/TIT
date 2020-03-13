@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        <div class="module-container">
+        <div class="module-container ">
             <asp:PlaceHolder ID="ModulePlaceholder"  runat="server"></asp:PlaceHolder>
         </div>
     </div>

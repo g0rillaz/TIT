@@ -15,10 +15,10 @@ namespace TIT
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //if (!IsPostBack)
-            //{
+            if (!IsPostBack)
+            {
                 loadInfo();
-            //}
+            }
 
         }
 
@@ -33,7 +33,10 @@ namespace TIT
             Region.DataValueField = "IsoCode";
             Region.DataBind();
 
-            //Test Start
+            //Source.DataSource = Statics.list_country;
+            //Source.DataTextField = "Name";
+            //Source.DataValueField = "IsoCode";
+            //Source.DataBind();
 
             //dropdown_sort.DataSource = list_country;
             //dropdown_sort.DataTextField = "Name";
