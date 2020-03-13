@@ -10,8 +10,6 @@ namespace TIT
 {
     public partial class ModuleComponent : System.Web.UI.UserControl
     {
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -80,11 +78,21 @@ namespace TIT
             condition.Mode = ModeTemperature.Checked;
             condition.Range = RangeTemperature.Checked;
 
+
+            var test = Table.GridLines;
+
+
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
             Statics.getWeatherData(country, station, condition);
 
+
+        }
+
+        protected void Table_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("EDDW");
         }
     }
 }
