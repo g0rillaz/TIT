@@ -16,8 +16,12 @@ namespace TITTest
             Statics.getListStationsByCountry(country.IsoCode, "noaa");
             Station station = Statics.list_stations[5];
 
-
+            
             Condition condition = new Condition();
+            condition.Source = "NOAA";
+            condition.Intervall = "'w'";
+            condition.OrderBy = "mean";
+            condition.OrderDirection = "desc";
             condition.DateFrom = new DateTime(2010, 1, 1);
             condition.DateTo = new DateTime(2010, 1, 7);
             condition.Deviation = false;
@@ -26,7 +30,7 @@ namespace TITTest
             condition.Mode = false;
             condition.Range = false;
             condition.Raw = false;
-            condition.Mean = true;
+            condition.Mean = false;
 
             Statics.getWeatherData(country, station, condition);
         }

@@ -17,14 +17,14 @@
   <Class Name="TITLib.Condition">
     <Position X="9" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAJAACAACMgAgAAAAAAAAABgEEABAAgAEIAQ=</HashCode>
+      <HashCode>AIgAABEAAtAACEACMoAgAAAAAAAAABgEEABAAgAFIAQ=</HashCode>
       <FileName>Condition.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TITLib.WeatherData">
     <Position X="11.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAJBAiAACNwBAAAAAAAEAAAAFGABAAgACIAQ=</HashCode>
       <FileName>WeatherData.cs</FileName>
     </TypeIdentifier>
   </Class>

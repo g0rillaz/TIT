@@ -123,56 +123,8 @@ namespace TITLib
         /// Zur DB Abfrage wird eine Stored Procedure verwendet
         /// Übergeben werden Land, Station und Bedingungen
         /// </summary>
-        public static void getWeatherData(Country country, Station station, Condition condition)
-        {
-
-            //string command = $"SELECT ";
-
-            //if(condition.Raw)
-            //{
-            //    command += "RAW, ";
-            //}
-
-            //if(condition.Mean)
-            //{
-            //    command += "MEAN, ";
-            //}
-
-            //if (condition.Median)
-            //{
-            //    command += "MEDIAN, ";
-            //}
-
-            //if (condition.Min)
-            //{
-            //    command += "MIN, ";
-            //}
-
-            //if (condition.Max)
-            //{
-            //    command += "MAX, ";
-            //}
-
-            //if (condition.Deviation)
-            //{
-            //    command += "DEVIATION, ";
-            //}
-
-            //if (condition.Mode)
-            //{
-            //    command += "MODE, ";
-            //}
-
-            //if (condition.Range)
-            //{
-            //    command += "RANGE, ";
-            //}
-
-            //command += $"ID ... FROM ... WHERE datefrom = {condition.DateFrom} AND dateto = {condition.DateTo}...";
-            //DataTable table = dBConnection.readDataSql(command);
-
-            //string command = "USE ProjectTIT; GO; EXEC dbo.SP_DATA_NOAA @INTERVALL, @SHW_MEAN, @SHW_MEDIAN, @SHW_MIN, @SHW_MAX, @SHW_SDEV, @SHW_MODE, @SHW_RANGE, @WH_DATE_BIT, @WH_DATE_BEGIN, @WH_DATE_END, @WH_COUNTRY_BIT, @WH_COUNTRY, @WH_STATION_BIT, @WH_STATION, @ORDERCOLUMN, @ORDERDESC;";
-            
+        public static List<WeatherData> getWeatherData(Country country, Station station, Condition condition)
+        {          
             List<WeatherData> list_weatherdata = new List<WeatherData>();
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
@@ -180,7 +132,7 @@ namespace TITLib
             string command = "dbo.SP_DATA_NOAA";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
 
-            sqlParameters.Add(new SqlParameter("INTERVALL", "'d'"));
+            sqlParameters.Add(new SqlParameter("INTERVALL", condition.Intervall));
             sqlParameters.Add(new SqlParameter("USE_RAW", '0'));
             sqlParameters.Add(new SqlParameter("SHW_MEAN", Convert.ToInt32(condition.Mean)));
             sqlParameters.Add(new SqlParameter("SHW_MEDIAN", Convert.ToInt32(condition.Median)));
@@ -196,20 +148,31 @@ namespace TITLib
             sqlParameters.Add(new SqlParameter("WH_COUNTRY", country.ID));
             sqlParameters.Add(new SqlParameter("WH_STATION_BIT", 1));
             sqlParameters.Add(new SqlParameter("WH_STATION", station.ID));
-            sqlParameters.Add(new SqlParameter("ORDERCOLUMN", "'median'"));
-            sqlParameters.Add(new SqlParameter("ORDERDESC", '0'));
+            sqlParameters.Add(new SqlParameter("ORDERCOLUMN", condition.OrderBy));
+            sqlParameters.Add(new SqlParameter("ORDERDESC", condition.OrderDirection));
 
-            dBConnection.readDataWithStoredProcedure(command, sqlParameters);
+            DataTable table = dBConnection.readDataWithStoredProcedure(command, sqlParameters);
 
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                WeatherData weatherdata = new WeatherData();
+                weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+                weatherdata.CountryName = table.Rows[i]["c.[Name]"].ToString();
+                weatherdata.StationName = table.Rows[i]["s.[Name]"].ToString();
+                weatherdata.StationNumber = table.Rows[i]["s.[Number]"].ToString();
+                weatherdata.Date = Convert.ToDateTime(table.Rows[i]["Date"]);
+                weatherdata.Mean = Convert.ToDecimal(table.Rows[i]["Mean"]);
+                weatherdata.Median = Convert.ToDecimal(table.Rows[i]["Median"]);
+                weatherdata.Min = Convert.ToDecimal(table.Rows[i]["Min"]);
+                weatherdata.Max = Convert.ToDecimal(table.Rows[i]["Max"]);
+                weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["Deviation"]);
+                weatherdata.Mode = Convert.ToDecimal(table.Rows[i]["Mode"]);
+                weatherdata.Range = Convert.ToDecimal(table.Rows[i]["Range"]);
 
-            //for (int i = 0; i < table.Rows.Count; i++)
-            //{
-            //    WeatherData weatherdata = new WeatherData();
-            //    weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
-            //station.Number = table.Rows[i]["NUMBER"].ToString();
+                list_weatherdata.Add(weatherdata);
+            }
 
-            //    list_weatherdata.Add(weatherdata);
-            //}
+            return list_weatherdata;
         }
 
     }

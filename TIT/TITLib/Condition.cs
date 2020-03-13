@@ -7,7 +7,51 @@ using System.Threading.Tasks;
 namespace TITLib
 {
     public class Condition
-    {
+    {        
+        //public enum SourceType { METEO, NOAA};
+        //public enum IntervallType { Daily = 'd', Weekly = 'w', Monthly = 'm', Yearly = 'y'};
+        //public enum OrderByType { Country, StationName, StationNumber, Date, Mean, Median, Min, Max, Deviation, Mode, Range};
+        //public enum OrderDirectionType { Ascending, Descending }
+
+        private string _source;
+        public string Source
+        {
+            get => _source;
+            set
+            {
+                _source = value;
+            }
+        }
+
+        private string _intervall;
+        public string Intervall
+        {
+            get => _intervall;
+            set
+            {
+                _intervall = value;
+            }
+        }
+
+        private string _orderBy;
+        public string OrderBy
+        {
+            get => _orderBy;
+            set
+            {
+                _orderBy = value;
+            }
+        }
+
+        private string _orderDirection;
+        public string OrderDirection
+        {
+            get => _orderDirection;
+            set
+            {
+                _orderDirection = value;
+            }
+        }
 
         private DateTime _dateFrom;
         public DateTime DateFrom
