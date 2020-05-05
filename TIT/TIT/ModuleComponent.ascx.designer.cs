@@ -24,6 +24,15 @@ namespace TIT
         protected global::System.Web.UI.WebControls.PlaceHolder ModulePlaceholder;
 
         /// <summary>
+        /// getDataButton-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button getDataButton;
+
+        /// <summary>
         /// Modulname-Steuerelement
         /// </summary>
         /// <remarks>
@@ -177,12 +186,21 @@ namespace TIT
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// gridview_main-Steuerelement
+        /// Table-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridview_main;
+        protected global::System.Web.UI.WebControls.Table Table;
+
+        /// <summary>
+        /// Table1HeaderRow-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderRow Table1HeaderRow;
     }
 }
