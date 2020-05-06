@@ -168,6 +168,15 @@ namespace TIT
         protected global::System.Web.UI.WebControls.TextBox ToDate;
 
         /// <summary>
+        /// removeModule-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button removeModule;
+
+        /// <summary>
         /// Button2-Steuerelement
         /// </summary>
         /// <remarks>

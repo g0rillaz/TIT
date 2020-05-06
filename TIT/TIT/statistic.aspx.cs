@@ -59,9 +59,9 @@ namespace TIT
         {
             Control moduleCmpt = this.LoadControl("ModuleComponent.ascx");
             moduleCmpt.ID = string.Format("userControl_{0}", index);
+
             this.ModulePlaceholder.Controls.Add(moduleCmpt);
         }
 
-        
     }
 }

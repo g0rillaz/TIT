@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using TITLib;
 
 namespace TIT
-{
+{ 
     public partial class ModuleComponent : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -84,15 +84,19 @@ namespace TIT
             condition.OrderDirection = "";
 
 
-
+            var test = FromDate.Text;
 
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
-            List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
+            //List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
+            List<WeatherData> test_list_weatherdata = Statics.getWeatherData(country, station, condition);
 
-            gridview_main.DataSource = list_weatherdata;
+
+            //gridview_main.DataSource = list_weatherdata;
+            gridview_main.DataSource = test_list_weatherdata;
+
             gridview_main.DataBind();
 
         }
@@ -101,5 +105,19 @@ namespace TIT
         {
             Console.WriteLine("EDDW");
         }
-    }
+
+        protected void removeModule_Click(object sender, EventArgs e)
+        {
+            //ModulePlaceholder.FindControl("userControl_0");
+            //var test = ((System.Web.UI.Control)(new System.Linq.SystemCore_EnumerableDebugView(this.Parent.Controls).Items[0])).ID;
+            string moduleCmtId = this.ID;
+            Control myUserControl = (this.Parent).FindControl(moduleCmtId);
+            this.Parent.Controls.Remove(this);
+        //this.Parent.Controls.Clear();
+
+            //Control myUserControl = (Control)Page.FindControl("CategoryControl_ID_" + NumberControlsForCategory.ToString());
+
+            //this.NumberControlsForCategory--;
+        }
+}
 }
