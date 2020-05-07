@@ -13,7 +13,7 @@ namespace TIT
     public partial class statistic : System.Web.UI.Page
     {
         //Counting variable according to the ViewState
-        int Count
+        public int Count
         {
             get
             {
@@ -58,10 +58,15 @@ namespace TIT
         void LoadUserControl(int index)
         {
             Control moduleCmpt = this.LoadControl("ModuleComponent.ascx");
-            moduleCmpt.ID = string.Format("userControl_{0}", index);
+            //moduleCmpt.ID = string.Format("userControl_{0}", index);
+            moduleCmpt.ID = string.Format("{0}", index);
 
             this.ModulePlaceholder.Controls.Add(moduleCmpt);
         }
 
+        protected void deleteAllModules_Click(object sender, EventArgs e)
+        {
+            ModulePlaceholder.Controls.Clear();
+        }
     }
 }

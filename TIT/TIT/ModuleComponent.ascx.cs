@@ -10,6 +10,10 @@ namespace TIT
 { 
     public partial class ModuleComponent : System.Web.UI.UserControl
     {
+        static class Butter
+        {
+            public static int counter = 1;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -108,16 +112,13 @@ namespace TIT
 
         protected void removeModule_Click(object sender, EventArgs e)
         {
-            //ModulePlaceholder.FindControl("userControl_0");
-            //var test = ((System.Web.UI.Control)(new System.Linq.SystemCore_EnumerableDebugView(this.Parent.Controls).Items[0])).ID;
-            string moduleCmtId = this.ID;
-            Control myUserControl = (this.Parent).FindControl(moduleCmtId);
+            //string moduleCmtId = this.ID;
+            //Control myUserControl = (this.Parent).FindControl(moduleCmtId);
+
+
+            statistic stat = this.Page as statistic;
+            stat.Count -= 1;
             this.Parent.Controls.Remove(this);
-        //this.Parent.Controls.Clear();
-
-            //Control myUserControl = (Control)Page.FindControl("CategoryControl_ID_" + NumberControlsForCategory.ToString());
-
-            //this.NumberControlsForCategory--;
         }
 }
 }
