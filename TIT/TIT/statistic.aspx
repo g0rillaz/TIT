@@ -7,6 +7,8 @@
             <div class="row">
                 <div class="clo-sm-2 mt-1">
                     <asp:Button class="btn btn-primary btn-outline" ID="createNewModule" Text="+ Module" OnClick="createNewModule_Click"  runat="server"/>
+                    <asp:Button class="btn btn-primary btn-outline" ID="deleteAllModules" Text="Delete All" OnClick="deleteAllModules_Click"  runat="server"/>
+
                 </div>
             </div>
         </div>

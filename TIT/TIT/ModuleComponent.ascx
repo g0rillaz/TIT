@@ -6,41 +6,7 @@
 <div class="module-component">
 
     <link href="Style/style_statistic.css" rel="stylesheet" />
-    <script>
-            window.onload = function () {
-
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    animationEnabled: true,
-                    title: {
-                        text: "Product Trends By Month"
-                    },
-                    axisY: {
-                        includeZero: false
-                    },
-                    toolTip: {
-                        shared: true
-                    },
-                    data: [{
-                        type: "line",
-                        name: "Desktops",
-                        showInLegend: true,
-                        dataPoints: @Html.Raw(ViewBag.DataPoints1)
-            }, {
-                type: "line",
-                name: "Laptops",
-                showInLegend: true,
-                dataPoints: @Html.Raw(ViewBag.DataPoints2)
-                    }, {
-                type: "line",
-                    name: "Mobiles",
-                        showInLegend: true,
-                            dataPoints: @Html.Raw(ViewBag.DataPoints3)
-            }]
-                });
-            chart.render();
-
-            }
-    </script>
+    
     <div class="container">
         <div class="row">
             <div class="col-sm-7"></div>
@@ -132,6 +98,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm">
+                                <asp:Button class="btn btn-primary btn-outline" ID="removeModule" Text="Remove Module" OnClick="removeModule_Click"  runat="server"/>
                                 <asp:Button class="btn btn-primary btn-outline" ID="Button2" Text="Get Data" OnClick="getDataButton_Click" runat="server" />
                             </div>
                         </div>
@@ -205,7 +172,7 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-            <%--<asp:Table Id="Table" runat="server" CellPadding="10" GridLines="Both" HorizontalAlign="Center" class="table table-sm table-dark mt-2" OnLoad="Table_Load">
+          <%--  <asp:Table Id="Table" runat="server" CellPadding="10" GridLines="Both" HorizontalAlign="Center" class="table table-sm table-dark mt-2" OnLoad="Table_Load">
                         <asp:TableHeaderRow id="Table1HeaderRow" runat="server" >
                             <asp:TableHeaderCell Scope="Column" Text="ID" />
                             <asp:TableHeaderCell Scope="Column" Text="Region" />
@@ -222,8 +189,8 @@
                             <asp:TableCell>Woher</asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow></asp:TableRow>
-                    </asp:Table>--%>
-            <%--</div>--%>
+                    </asp:Table>
+            </div>--%>
             <div class="m-3 col-sm-8 border mt-2">
                 <i class="fa fa-arrow-down" aria-hidden="true"></i>
                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>

@@ -7,9 +7,13 @@ using System.Web.UI.WebControls;
 using TITLib;
 
 namespace TIT
-{
+{ 
     public partial class ModuleComponent : System.Web.UI.UserControl
     {
+        static class Butter
+        {
+            public static int counter = 1;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -84,15 +88,19 @@ namespace TIT
             //condition.OrderDirection = "";
 
 
-
+            var test = FromDate.Text;
 
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
-            List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
+            //List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
+            List<WeatherData> test_list_weatherdata = Statics.getWeatherData(country, station, condition);
 
-            gridview_main.DataSource = list_weatherdata;
+
+            //gridview_main.DataSource = list_weatherdata;
+            gridview_main.DataSource = test_list_weatherdata;
+
             gridview_main.DataBind();
 
         }
@@ -101,5 +109,16 @@ namespace TIT
         {
             Console.WriteLine("EDDW");
         }
-    }
+
+        protected void removeModule_Click(object sender, EventArgs e)
+        {
+            //string moduleCmtId = this.ID;
+            //Control myUserControl = (this.Parent).FindControl(moduleCmtId);
+
+
+            statistic stat = this.Page as statistic;
+            stat.Count -= 1;
+            this.Parent.Controls.Remove(this);
+        }
+}
 }
