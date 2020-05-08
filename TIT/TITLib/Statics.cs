@@ -129,27 +129,145 @@ namespace TITLib
             dBConnection = new DBConnection();
             dBConnection.createConnection(connectionstring);
 
-            string command = "dbo.SP_DATA_NOAA";
+            string command = "dbo.SP_DATA_ACCESS";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
 
-            sqlParameters.Add(new SqlParameter("INTERVALL", condition.Intervall));
-            sqlParameters.Add(new SqlParameter("USE_RAW", '0'));
-            sqlParameters.Add(new SqlParameter("SHW_MEAN", Convert.ToInt32(condition.Mean)));
-            sqlParameters.Add(new SqlParameter("SHW_MEDIAN", Convert.ToInt32(condition.Median)));
-            sqlParameters.Add(new SqlParameter("SHW_MIN", Convert.ToInt32(condition.Min)));
-            sqlParameters.Add(new SqlParameter("SHW_MAX", Convert.ToInt32(condition.Max)));
-            sqlParameters.Add(new SqlParameter("SHW_SDEV", Convert.ToInt32(condition.Deviation)));
-            sqlParameters.Add(new SqlParameter("SHW_MODE", Convert.ToInt32(condition.Mode)));
-            sqlParameters.Add(new SqlParameter("SHW_RANGE", Convert.ToInt32(condition.Range)));
-            sqlParameters.Add(new SqlParameter("WH_DATE_BIT", '1'));
-            sqlParameters.Add(new SqlParameter("WH_DATE_BEGIN", condition.DateFrom));
-            sqlParameters.Add(new SqlParameter("WH_DATE_END", condition.DateTo));
-            sqlParameters.Add(new SqlParameter("WH_COUNTRY_BIT", '1'));
-            sqlParameters.Add(new SqlParameter("WH_COUNTRY", country.ID));
-            sqlParameters.Add(new SqlParameter("WH_STATION_BIT", 1));
-            sqlParameters.Add(new SqlParameter("WH_STATION", station.ID));
-            sqlParameters.Add(new SqlParameter("ORDERCOLUMN", condition.OrderBy));
-            sqlParameters.Add(new SqlParameter("ORDERDESC", condition.OrderDirection));
+
+            SqlParameter parameter0 = new SqlParameter();
+            parameter0.ParameterName = "USE_RAW";
+            parameter0.SqlDbType = SqlDbType.Bit;
+            parameter0.Direction = ParameterDirection.Input;
+
+            if (condition.Source == "NOAA")
+            {
+                parameter0.Value = 0;
+            } else
+            {
+                parameter0.Value = 1;
+            }
+
+
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "INTERVALL";
+            parameter1.Value = $"'{condition.Intervall}'";
+            parameter1.SqlDbType = SqlDbType.VarChar;
+            parameter1.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "SHW_MEAN";
+            parameter2.Value = Convert.ToInt32(condition.Mean);
+            parameter2.SqlDbType = SqlDbType.Bit;
+            parameter2.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "SHW_MEDIAN";
+            parameter3.Value = Convert.ToInt32(condition.Median);
+            parameter3.SqlDbType = SqlDbType.Bit;
+            parameter3.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "SHW_MIN";
+            parameter4.Value = Convert.ToInt32(condition.Min);
+            parameter4.SqlDbType = SqlDbType.Bit;
+            parameter4.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "SHW_MAX";
+            parameter5.Value = Convert.ToInt32(condition.Max);
+            parameter5.SqlDbType = SqlDbType.Bit;
+            parameter5.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "SHW_SDEV";
+            parameter6.Value = Convert.ToInt32(condition.Deviation);
+            parameter6.SqlDbType = SqlDbType.Bit;
+            parameter6.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "SHW_MODE";
+            parameter7.Value = Convert.ToInt32(condition.Mode);
+            parameter7.SqlDbType = SqlDbType.Bit;
+            parameter7.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "SHW_RANGE";
+            parameter8.Value = Convert.ToInt32(condition.Range);
+            parameter8.SqlDbType = SqlDbType.Bit;
+            parameter8.Direction = ParameterDirection.Input;
+
+            //SqlParameter parameter9 = new SqlParameter();
+            //parameter9.ParameterName = "WH_DATE_BIT";
+            //parameter9.Value = 1;
+            //parameter9.SqlDbType = SqlDbType.Bit;
+            //parameter9.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter10 = new SqlParameter();
+            parameter10.ParameterName = "WH_DATE_BEGIN";
+            parameter10.Value = condition.DateFrom;
+            parameter10.SqlDbType = SqlDbType.Date;
+            parameter10.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter11 = new SqlParameter();
+            parameter11.ParameterName = "WH_DATE_END";
+            parameter11.Value = condition.DateTo;
+            parameter11.SqlDbType = SqlDbType.Date;
+            parameter11.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter12 = new SqlParameter();
+            parameter12.ParameterName = "WH_COUNTRY_BIT";
+            parameter12.Value = 1;
+            parameter12.SqlDbType = SqlDbType.Bit;
+            parameter12.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter13 = new SqlParameter();
+            parameter13.ParameterName = "WH_COUNTRY";
+            parameter13.Value = country.ID;
+            parameter13.SqlDbType = SqlDbType.Int;
+            parameter13.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter14 = new SqlParameter();
+            parameter14.ParameterName = "WH_STATION_BIT";
+            parameter14.Value = 1;
+            parameter14.SqlDbType = SqlDbType.Bit;
+            parameter14.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "WH_STATION";
+            parameter15.Value = station.ID;
+            parameter15.SqlDbType = SqlDbType.Int;
+            parameter15.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter16 = new SqlParameter();
+            parameter16.ParameterName = "ORDERCOLUMN";
+            parameter16.Value = $"'{condition.OrderBy}'";
+            parameter16.SqlDbType = SqlDbType.VarChar;
+            parameter16.Direction = ParameterDirection.Input;
+
+            SqlParameter parameter17 = new SqlParameter();
+            parameter17.ParameterName = "ORDERDESC";
+            parameter17.Value = Convert.ToInt32(condition.OrderDirection);
+            parameter17.SqlDbType = SqlDbType.Bit;
+            parameter17.Direction = ParameterDirection.Input;
+
+
+            sqlParameters.Add(parameter0);
+            sqlParameters.Add(parameter1);
+            sqlParameters.Add(parameter2);
+            sqlParameters.Add(parameter3);
+            sqlParameters.Add(parameter4);
+            sqlParameters.Add(parameter5);
+            sqlParameters.Add(parameter6);
+            sqlParameters.Add(parameter7);
+            sqlParameters.Add(parameter8);
+            //sqlParameters.Add(parameter9);
+            sqlParameters.Add(parameter10);
+            sqlParameters.Add(parameter11);
+            sqlParameters.Add(parameter12);
+            sqlParameters.Add(parameter13);
+            sqlParameters.Add(parameter14);
+            sqlParameters.Add(parameter15);
+            sqlParameters.Add(parameter16);
+            sqlParameters.Add(parameter17);
 
             DataTable table = dBConnection.readDataWithStoredProcedure(command, sqlParameters);
 

@@ -43,8 +43,8 @@ namespace TITLib
             }
         }
 
-        private string _orderDirection;
-        public string OrderDirection
+        private bool _orderDirection;
+        public bool OrderDirection
         {
             get => _orderDirection;
             set

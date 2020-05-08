@@ -81,7 +81,7 @@ namespace TIT
             condition.DateTo = Convert.ToDateTime(ToDate.Text);
             condition.Intervall = "";
             condition.OrderBy = "";
-            condition.OrderDirection = "";
+            //condition.OrderDirection = "";
 
 
 
