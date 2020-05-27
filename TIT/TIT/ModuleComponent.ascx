@@ -2,54 +2,79 @@
 
 <script runat="server">
 	  public int MinValue = 0;
-</script>
+	</script>
 <div class="module-component">
 
-    <link href="Style/style_statistic.css" rel="stylesheet" />
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-7"></div>
-            <asp:PlaceHolder ID="ModulePlaceholder" runat="server"></asp:PlaceHolder>
-            <div class="m-3 col-sm-8 mt-5 border border-left-6">
-                <div class="input-group mt-3">
-                    <asp:TextBox class="form-control" ID="Modulname" Text="Modulname" runat="server"></asp:TextBox>
-                </div>
-                <div class="dropdown-toggle">
-                    <div class="container-fluid">
-                        <div class="row mb-1">
-                            <div class="col-sm">
-                                <asp:DropDownList ID="Source" CssClass="" runat="server">
-                                    <asp:ListItem Text="Meteo" Value="METEO" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="NOAA" Value="NOAA"></asp:ListItem>
-                                </asp:DropDownList>
-                                <asp:DropDownList ID="Region" CssClass="" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                                </asp:DropDownList>
-                                <asp:DropDownList ID="Station" CssClass="" runat="server">
-                                </asp:DropDownList>
-                                <br>
-                            </div>
-                            <div class="col-sm">
-                                <asp:DropDownList ID="Interval" CssClass="" runat="server">
-                                    <asp:ListItem Text="Daily" Value="d"></asp:ListItem>
-                                    <asp:ListItem Text="Weekly" Value="w"></asp:ListItem>
-                                    <asp:ListItem Text="Monthly" Value="m"></asp:ListItem>
-                                    <asp:ListItem Text="Yearly" Value="y" Selected="True"></asp:ListItem>
-                                </asp:DropDownList>
-                                <asp:DropDownList ID="OrderedBy" CssClass="" runat="server">
-                                    <asp:ListItem Text="Date" Value="date" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="Country" Value="country"></asp:ListItem>
-                                    <asp:ListItem Text="Station" Value="st_name"></asp:ListItem>
-                                    <%--<asp:ListItem Text="Station Number" Value="st_number"></asp:ListItem>--%>
-                                    <asp:ListItem Text="Mean" Value="mean"></asp:ListItem>
-                                    <asp:ListItem Text="Median" Value="median"></asp:ListItem>
-                                    <asp:ListItem Text="Min" Value="min"></asp:ListItem>
-                                    <asp:ListItem Text="Max" Value="max"></asp:ListItem>
-                                    <asp:ListItem Text="Deviation" Value="s_dev"></asp:ListItem>
-                                    <asp:ListItem Text="Mode" Value="mode"></asp:ListItem>
-                                    <asp:ListItem Text="Range" Value="range"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
+     <link href="Style/style_statistic.css" rel="stylesheet" />
+        <script>
+            window.onload = function () {
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    title: {
+                        text: "Product Trends By Month"
+                    },
+                    axisY: {
+                        includeZero: false
+                    },
+                    toolTip: {
+                        shared: true
+                    },
+                    data: [{
+                        type: "line",
+                        name: "Desktops",
+                        showInLegend: true,
+                        dataPoints: @Html.Raw(ViewBag.DataPoints1)
+            }, {
+                type: "line",
+                name: "Laptops",
+                showInLegend: true,
+                dataPoints: @Html.Raw(ViewBag.DataPoints2)
+                    }, {
+                type: "line",
+                    name: "Mobiles",
+                        showInLegend: true,
+                            dataPoints: @Html.Raw(ViewBag.DataPoints3)
+            }]
+                });
+            chart.render();
+
+            }
+        </script>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7"></div>
+                <asp:PlaceHolder ID="ModulePlaceholder" runat="server"></asp:PlaceHolder>
+                <div class="m-3 col-sm-8 mt-5 border border-left-6">
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend mb-3 ml-3">
+                            <asp:Button class="btn btn-outline-secondary" ID="getDataButton" Text="Modulname" OnClick="getDataButton_Click" runat="server" />
+                        </div>
+                        <asp:TextBox class="form-control" ID="Modulname" Text="Modulname" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="dropdown-toggle">
+                        <div class="container-fluid">
+                            <div class="row mb-1">
+                                <div class="col-sm">
+                                    <asp:DropDownList ID="Source" CssClass="form-control p-3" runat="server" >
+                                        <asp:ListItem Value="Source">Source</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Region" CssClass="form-control p-3" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                        <asp:ListItem Value="Region">Region</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Station" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="Station">Station</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <br>
+                                </div>
+                                <div class="col-sm">
+                                    <asp:DropDownList ID="Interval" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="Interval">Interval</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="OrderedBy" CssClass="form-control p-3" runat="server">
+                                        <asp:ListItem Value="OrderedBy">OrderedBy</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
 
                             <div class="col-sm">
                                 <div class="col-sm-4">
@@ -190,18 +215,18 @@
                         </asp:TableRow>
                         <asp:TableRow></asp:TableRow>
                     </asp:Table>
-            </div>--%>
-            <div class="m-3 col-sm-8 border mt-2">
-                <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="m-3 col-sm-8 border mt-2">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
-                <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
+                    <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
 
 
+                     
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+                </div>
             </div>
         </div>
     </div>
-</div>
