@@ -20,8 +20,8 @@
                         <div class="row mb-1">
                             <div class="col-sm">
                                 <asp:DropDownList ID="Source" CssClass="" runat="server">
-                                    <asp:ListItem Text="Meteo" Value="meteo" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="NOAA" Value="noaa"></asp:ListItem>
+                                    <asp:ListItem Text="Meteo" Value="METEO" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="NOAA" Value="NOAA"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:DropDownList ID="Region" CssClass="" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                 </asp:DropDownList>
@@ -31,16 +31,16 @@
                             </div>
                             <div class="col-sm">
                                 <asp:DropDownList ID="Interval" CssClass="" runat="server">
-                                    <asp:ListItem Text="Daily" Value="d" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Daily" Value="d"></asp:ListItem>
                                     <asp:ListItem Text="Weekly" Value="w"></asp:ListItem>
                                     <asp:ListItem Text="Monthly" Value="m"></asp:ListItem>
-                                    <asp:ListItem Text="Yearly" Value="y"></asp:ListItem>
+                                    <asp:ListItem Text="Yearly" Value="y" Selected="True"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:DropDownList ID="OrderedBy" CssClass="" runat="server">
                                     <asp:ListItem Text="Date" Value="date" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Country" Value="country"></asp:ListItem>
                                     <asp:ListItem Text="Station" Value="st_name"></asp:ListItem>
-                                    <asp:ListItem Text="Station Number" Value="st_number"></asp:ListItem>
+                                    <%--<asp:ListItem Text="Station Number" Value="st_number"></asp:ListItem>--%>
                                     <asp:ListItem Text="Mean" Value="mean"></asp:ListItem>
                                     <asp:ListItem Text="Median" Value="median"></asp:ListItem>
                                     <asp:ListItem Text="Min" Value="min"></asp:ListItem>
@@ -53,10 +53,10 @@
 
                             <div class="col-sm">
                                 <div class="col-sm-4">
-                                    <div class="form-check">
+<%--                                    <div class="form-check">
                                         <asp:CheckBox ID="RawTemperature" Text="RawTemperature" runat="server" />
                                         <label class="form-check-label" for="RawTemperature"></label>
-                                    </div>
+                                    </div>--%>
                                     <div class="form-check">
                                         <asp:CheckBox ID="MeanTemperature" Text="MeanTemperature" runat="server" />
                                         <label class="form-check-label" for="MeanTemperature"></label>
@@ -77,10 +77,10 @@
                                         <asp:CheckBox ID="StandardDeviation" Text="StandardDeviation" runat="server" />
                                         <label class="form-check-label" for="StandardDeviation"></label>
                                     </div>
-                                    <div class="form-check">
+<%--                                    <div class="form-check">
                                         <asp:CheckBox ID="ModeTemperature" Text="ModeTemperature" runat="server" />
                                         <label class="form-check-label" for="ModeTemperature"></label>
-                                    </div>
+                                    </div>--%>
                                     <div class="form-check">
                                         <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
                                         <label class="form-check-label" for="RangeTemperature"></label>
@@ -125,11 +125,11 @@
                             <asp:Label ID="gridview_StationName" runat="server" Text='<%# Eval("StationName") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="StationName" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+<%--                    <asp:TemplateField HeaderText="StationName" ItemStyle-CssClass="" HeaderStyle-CssClass="">
                         <ItemTemplate>
                             <asp:Label ID="gridview_StationNumber" runat="server" Text='<%# Eval("StationNumber") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
                     <asp:TemplateField HeaderText="Date" ItemStyle-CssClass="" HeaderStyle-CssClass="">
                         <ItemTemplate>
                             <asp:Label ID="gridview_Date" runat="server" Text='<%# Eval("Date") %>'></asp:Label>
@@ -160,11 +160,11 @@
                             <asp:Label ID="gridview_Deviation" runat="server" Text='<%# Eval("Deviation") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Mode" ItemStyle-CssClass="" HeaderStyle-CssClass="">
+<%--                    <asp:TemplateField HeaderText="Mode" ItemStyle-CssClass="" HeaderStyle-CssClass="">
                         <ItemTemplate>
                             <asp:Label ID="gridview_Mode" runat="server" Text='<%# Eval("Mode") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
                     <asp:TemplateField HeaderText="Range" ItemStyle-CssClass="" HeaderStyle-CssClass="">
                         <ItemTemplate>
                             <asp:Label ID="gridview_Range" runat="server" Text='<%# Eval("Range") %>'></asp:Label>

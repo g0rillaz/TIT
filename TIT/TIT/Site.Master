@@ -60,8 +60,8 @@
         <div class="sidebar">
             <a href="main.aspx" class="logo"><img src="Images/logo.png" style="width: auto; height: 8vh; margin-left: -2vw;"/></a>            
             <%--<a href="search.aspx"><i class="fas fa-search fa-fw"></i> Search</a>--%>
-            <a href="map.aspx"><i class="fas fa-map fa-fw"></i> Map</a>
             <a href="statistic.aspx"><i class="fas fa-table fa-fw"></i> Statistic</a>
+            <a href="map.aspx"><i class="fas fa-map fa-fw"></i> Map</a>
             <a href="info.aspx"><i class="fas fa-info fa-fw"></i> Info</a>
             <%--<a href="admin.aspx"><i class="fas fa-tools fa-fw"></i> Admin</a>--%>
         </div>

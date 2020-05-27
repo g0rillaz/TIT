@@ -78,15 +78,6 @@ namespace TIT
         protected global::System.Web.UI.WebControls.DropDownList OrderedBy;
 
         /// <summary>
-        /// RawTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RawTemperature;
-
-        /// <summary>
         /// MeanTemperature-Steuerelement
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox StandardDeviation;
-
-        /// <summary>
-        /// ModeTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ModeTemperature;
 
         /// <summary>
         /// RangeTemperature-Steuerelement

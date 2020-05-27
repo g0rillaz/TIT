@@ -149,7 +149,7 @@ namespace TITLib
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "INTERVALL";
-            parameter1.Value = $"'{condition.Intervall}'";
+            parameter1.Value = $"{condition.Intervall}";
             parameter1.SqlDbType = SqlDbType.VarChar;
             parameter1.Direction = ParameterDirection.Input;
 
@@ -183,12 +183,12 @@ namespace TITLib
             parameter6.SqlDbType = SqlDbType.Bit;
             parameter6.Direction = ParameterDirection.Input;
 
-            SqlParameter parameter7 = new SqlParameter();
-            parameter7.ParameterName = "SHW_MODE";
-            parameter7.Value = Convert.ToInt32(condition.Mode);
-            parameter7.SqlDbType = SqlDbType.Bit;
-            parameter7.Direction = ParameterDirection.Input;
-
+            //SqlParameter parameter7 = new SqlParameter();
+            //parameter7.ParameterName = "SHW_MODE";
+            //parameter7.Value = Convert.ToInt32(condition.Mode);
+            //parameter7.SqlDbType = SqlDbType.Bit;
+            //parameter7.Direction = ParameterDirection.Input;
+             
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "SHW_RANGE";
             parameter8.Value = Convert.ToInt32(condition.Range);
@@ -239,7 +239,7 @@ namespace TITLib
 
             SqlParameter parameter16 = new SqlParameter();
             parameter16.ParameterName = "ORDERCOLUMN";
-            parameter16.Value = $"'{condition.OrderBy}'";
+            parameter16.Value = $"{condition.OrderBy}";
             parameter16.SqlDbType = SqlDbType.VarChar;
             parameter16.Direction = ParameterDirection.Input;
 
@@ -257,7 +257,7 @@ namespace TITLib
             sqlParameters.Add(parameter4);
             sqlParameters.Add(parameter5);
             sqlParameters.Add(parameter6);
-            sqlParameters.Add(parameter7);
+            //sqlParameters.Add(parameter7);
             sqlParameters.Add(parameter8);
             //sqlParameters.Add(parameter9);
             sqlParameters.Add(parameter10);
@@ -274,17 +274,17 @@ namespace TITLib
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 WeatherData weatherdata = new WeatherData();
-                weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
-                weatherdata.CountryName = table.Rows[i]["c.[Name]"].ToString();
-                weatherdata.StationName = table.Rows[i]["s.[Name]"].ToString();
-                weatherdata.StationNumber = table.Rows[i]["s.[Number]"].ToString();
-                weatherdata.Date = Convert.ToDateTime(table.Rows[i]["Date"]);
+                //weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+                weatherdata.CountryName = table.Rows[i]["Country"].ToString();
+                weatherdata.StationName = table.Rows[i]["Station"].ToString();
+                //weatherdata.StationNumber = table.Rows[i]["s.[Number]"].ToString();
+                weatherdata.Date = table.Rows[i]["Date"].ToString();
                 weatherdata.Mean = Convert.ToDecimal(table.Rows[i]["Mean"]);
                 weatherdata.Median = Convert.ToDecimal(table.Rows[i]["Median"]);
                 weatherdata.Min = Convert.ToDecimal(table.Rows[i]["Min"]);
                 weatherdata.Max = Convert.ToDecimal(table.Rows[i]["Max"]);
-                weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["Deviation"]);
-                weatherdata.Mode = Convert.ToDecimal(table.Rows[i]["Mode"]);
+                weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["SDev"]);
+                //weatherdata.Mode = Convert.ToDecimal(table.Rows[i]["Mode"]);
                 weatherdata.Range = Convert.ToDecimal(table.Rows[i]["Range"]);
 
                 list_weatherdata.Add(weatherdata);

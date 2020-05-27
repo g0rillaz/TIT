@@ -12,7 +12,7 @@
         }
     </style>
 
-    <div id='map' style='width: 95vw; height: 900px;'></div>
+    <div id='map' style='width: 85vw; height: 900px;'></div>
 
     <script>
 

@@ -12,6 +12,12 @@ body {
     background-size: cover;
 }
 
+h1 {
+    display: inline;
+    margin: 0px;
+    color: white;
+}
+
 .container_main {
     height: auto;
     margin-bottom: 15vh;
@@ -25,7 +31,7 @@ body {
     color: black;
     border: solid 1px #EBF0F2;
     border-radius: 5px;
-    background-color: #EBF0F2;
+    background-color: #12122d;
     opacity: 0.9;
 }
 
@@ -68,6 +74,15 @@ body {
     .flexboxitem_main h3 {
         color: black;
     }
+
+.image_logo {
+    width: auto;
+    height: 15vh;
+}
+
+.h3_1 {
+    color: white;
+}
 
 .icon_main {
     font-size: 12rem;

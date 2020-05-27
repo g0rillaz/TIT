@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container_main">
         <div class="container_message">
-            <h1>Welcome at TiT - Temperature in Time</h1>
-            <h3>Please choose an option or <a href="info.aspx">learn more about TiT</a></h3>
+            <h1>Welcome at </h1>
+            <img src="Images/logo.png" class="image_logo" />
+            <h1>- Temperature in Time</h1>
+            <h3 class="h3_1">Please choose an option</h3>
         </div>
         <div class="flexbox_main">
             <a class="flexboxitem_main" href="statistic.aspx">

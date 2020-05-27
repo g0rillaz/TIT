@@ -48,8 +48,8 @@ namespace TITLib
             }
         }
 
-        private DateTime _date;
-        public DateTime Date
+        private string _date;
+        public string Date
         {
             get => _date;
             set
@@ -108,15 +108,15 @@ namespace TITLib
             }
         }
 
-        private decimal _mode;
-        public decimal Mode
-        {
-            get => _mode;
-            set
-            {
-                _mode = value;
-            }
-        }
+        //private decimal _mode;
+        //public decimal Mode
+        //{
+        //    get => _mode;
+        //    set
+        //    {
+        //        _mode = value;
+        //    }
+        //}
 
         private decimal _range;
         public decimal Range

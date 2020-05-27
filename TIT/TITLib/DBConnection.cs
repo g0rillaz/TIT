@@ -90,13 +90,11 @@ namespace TITLib
 
         public DataTable readDataWithStoredProcedure(string command, List<SqlParameter> sqlParameters)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.TableName = "WeatherData";
             createCommand(command);
             Command.CommandType = CommandType.StoredProcedure;
             Command.CommandTimeout = 0;
 
-            foreach  (SqlParameter parameter in sqlParameters)
+            foreach (SqlParameter parameter in sqlParameters)
             {
                 Command.Parameters.Add(parameter);
             }
@@ -105,6 +103,9 @@ namespace TITLib
             da.SelectCommand = Command;
 
             da.SelectCommand.Prepare();
+
+            DataTable dataTable = new DataTable();
+            dataTable.TableName = "WeatherData";
             da.Fill(dataTable);
 
             return dataTable;

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using TITLib;
 
 namespace TIT
-{ 
+{
     public partial class ModuleComponent : System.Web.UI.UserControl
     {
         static class Butter
@@ -54,11 +54,11 @@ namespace TIT
         {
 
             string IsoCode = Region.SelectedItem.Value;
-            Statics.getListStationsByCountry(IsoCode, "meteo");
+            Statics.getListStationsByCountry(IsoCode, Source.SelectedValue);
 
             Station.DataSource = Statics.list_stations;
             Station.DataTextField = "Name";
-            Station.DataValueField = "Number";
+            Station.DataValueField = "ID";
             Station.DataBind();
         }
 
@@ -73,26 +73,27 @@ namespace TIT
 
             TITLib.Condition condition = new Condition();
 
-            condition.Raw = RawTemperature.Checked;
+            //condition.Raw = RawTemperature.Checked;
+            condition.Source = Source.SelectedValue;
             condition.Mean = MeanTemperature.Checked;
             condition.Median = MedianTemperature.Checked;
             condition.Min = MinTemperature.Checked;
             condition.Max = MaxTemperature.Checked;
             condition.Deviation = StandardDeviation.Checked;
-            condition.Mode = ModeTemperature.Checked;
+            //condition.Mode = ModeTemperature.Checked;
             condition.Range = RangeTemperature.Checked;
             condition.DateFrom = Convert.ToDateTime(FromDate.Text);
             condition.DateTo = Convert.ToDateTime(ToDate.Text);
-            condition.Intervall = "";
-            condition.OrderBy = "";
-            //condition.OrderDirection = "";
+            condition.Intervall = Interval.SelectedValue;
+            condition.OrderBy = OrderedBy.SelectedValue;
+            condition.OrderDirection = false;
 
 
             var test = FromDate.Text;
 
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
-            TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
+            TITLib.Station station = Statics.list_stations.Find(x => x.ID == Convert.ToInt32(Station.SelectedValue));
 
             //List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
             List<WeatherData> test_list_weatherdata = Statics.getWeatherData(country, station, condition);
@@ -120,5 +121,5 @@ namespace TIT
             stat.Count -= 1;
             this.Parent.Controls.Remove(this);
         }
-}
+    }
 }
