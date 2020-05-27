@@ -25,6 +25,7 @@ namespace TITTest
             condition.DateFrom = new DateTime(1990, 1, 1);
             condition.DateTo = new DateTime(1991, 12, 31);
             condition.Deviation = true;
+            condition.Mean = true;
             condition.Max = true;
             condition.Min = true;
             //condition.Mode = false;

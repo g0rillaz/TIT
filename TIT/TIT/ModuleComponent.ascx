@@ -172,7 +172,7 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-          <%--  <asp:Table Id="Table" runat="server" CellPadding="10" GridLines="Both" HorizontalAlign="Center" class="table table-sm table-dark mt-2" OnLoad="Table_Load">
+           <%-- <asp:Table Id="Table" runat="server" CellPadding="10" GridLines="Both" HorizontalAlign="Center" class="table table-sm table-dark mt-2" OnLoad="Table_Load">
                         <asp:TableHeaderRow id="Table1HeaderRow" runat="server" >
                             <asp:TableHeaderCell Scope="Column" Text="ID" />
                             <asp:TableHeaderCell Scope="Column" Text="Region" />
@@ -189,7 +189,7 @@
                             <asp:TableCell>Woher</asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow></asp:TableRow>
-                    </asp:Table>
+                    </asp:Table>--%>
                 </div>
                 <div class="m-3 col-sm-8 border mt-2">
                     <i class="fa fa-arrow-down" aria-hidden="true"></i>
@@ -264,14 +264,8 @@
                         </script>                       
                        
 
-                        
-                               <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
-                      
-
-
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
                 </div>
             </div>
         </div>
-    </div>
