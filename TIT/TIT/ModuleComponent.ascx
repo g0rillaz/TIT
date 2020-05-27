@@ -6,109 +6,76 @@
 <div class="module-component">
 
      <link href="Style/style_statistic.css" rel="stylesheet" />
-        <script>
-            window.onload = function () {
-
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    animationEnabled: true,
-                    title: {
-                        text: "Product Trends By Month"
-                    },
-                    axisY: {
-                        includeZero: false
-                    },
-                    toolTip: {
-                        shared: true
-                    },
-                    data: [{
-                        type: "line",
-                        name: "Desktops",
-                        showInLegend: true,
-                        dataPoints: @Html.Raw(ViewBag.DataPoints1)
-            }, {
-                type: "line",
-                name: "Laptops",
-                showInLegend: true,
-                dataPoints: @Html.Raw(ViewBag.DataPoints2)
-                    }, {
-                type: "line",
-                    name: "Mobiles",
-                        showInLegend: true,
-                            dataPoints: @Html.Raw(ViewBag.DataPoints3)
-            }]
-                });
-            chart.render();
-
-            }
-        </script>
         <div class="container">
             <div class="row">
                 <div class="col-sm-7"></div>
                 <asp:PlaceHolder ID="ModulePlaceholder" runat="server"></asp:PlaceHolder>
                 <div class="m-3 col-sm-8 mt-5 border border-left-6">
                     <div class="input-group mt-3">
-                        <div class="input-group-prepend mb-3 ml-3">
-                            <asp:Button class="btn btn-outline-secondary" ID="getDataButton" Text="Modulname" OnClick="getDataButton_Click" runat="server" />
+    <                    <div class="input-group-prepend mb-3 ml-3">
+                            <asp:Button class="btn btn-outline-secondary" ID="getDataButton" Text="Modulname" OnClick="getDataButton_Click" runat="server" />                            
                         </div>
+
+
                         <asp:TextBox class="form-control" ID="Modulname" Text="Modulname" runat="server"></asp:TextBox>
                     </div>
                     <div class="dropdown-toggle">
                         <div class="container-fluid">
                             <div class="row mb-1">
                                 <div class="col-sm">
-                                    <asp:DropDownList ID="Source" CssClass="form-control p-3" runat="server" >
+                                    <asp:DropDownList ID="Source" CssClass="btn btn-default btn-sm" runat="server" >
                                         <asp:ListItem Value="Source">Source</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:DropDownList ID="Region" CssClass="form-control p-3" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                    <asp:DropDownList ID="Region" CssClass="btn btn-default btn-sm" OnSelectedIndexChanged="Region_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                         <asp:ListItem Value="Region">Region</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:DropDownList ID="Station" CssClass="form-control p-3" runat="server">
+                                    <asp:DropDownList ID="Station" CssClass="btn btn-default btn-sm" runat="server">
                                         <asp:ListItem Value="Station">Station</asp:ListItem>
                                     </asp:DropDownList>
                                     <br>
                                 </div>
                                 <div class="col-sm">
-                                    <asp:DropDownList ID="Interval" CssClass="form-control p-3" runat="server">
+                                    <asp:DropDownList ID="Interval" CssClass="btn btn-default btn-sm" runat="server">
                                         <asp:ListItem Value="Interval">Interval</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:DropDownList ID="OrderedBy" CssClass="form-control p-3" runat="server">
+                                    <asp:DropDownList ID="OrderedBy" CssClass="btn btn-default btn-sm" runat="server">
                                         <asp:ListItem Value="OrderedBy">OrderedBy</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
 
-                                <div class="col-sm">
+                                <div class="col-sm" style="right:0px;">
                                     <div class="col-sm-4">
                                         <div class="form-check">
-                                            <asp:CheckBox ID="RawTemperature" Text="RawTemperature" runat="server" />
-                                            <label class="form-check-label" for="RawTemperature"></label>
+                                            <asp:CheckBox ID="RawTemperature" runat="server" />
+                                            <label class="form-check-label" for="RawTemperature">Raw Temperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="MeanTemperature" Text="MeanTemperature" runat="server" />
-                                            <label class="form-check-label" for="MeanTemperature"></label>
+                                            <asp:CheckBox ID="MeanTemperature" runat="server" />
+                                            <label class="form-check-label" for="MeanTemperature">Mean Temperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="MedianTemperature" Text="MedianTemperature" runat="server" />
-                                            <label class="form-check-label" for="MedianTemperature"></label>
+                                            <asp:CheckBox ID="MedianTemperature" runat="server" />
+                                            <label class="form-check-label" for="MedianTemperature">Median Temperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="MinTemperature" Text="MinTemperature" runat="server" />
-                                            <label class="form-check-label" for="MinTemperature"></label>
+                                            <asp:CheckBox ID="MinTemperature" runat="server" />
+                                            <label class="form-check-label" for="MinTemperature">MinTemperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="MaxTemperature" Text="MaxTemperature" runat="server" />
-                                            <label class="form-check-label" for="MaxTemperature"></label>
+                                            <asp:CheckBox ID="MaxTemperature" runat="server" />
+                                            <label class="form-check-label" for="MaxTemperature">Max Temperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="StandardDeviation" Text="StandardDeviation" runat="server" />
-                                            <label class="form-check-label" for="StandardDeviation"></label>
+                                            <asp:CheckBox ID="StandardDeviation" runat="server" />
+                                            <label class="form-check-label" for="StandardDeviation">Standard Deviation</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="ModeTemperature" Text="ModeTemperature" runat="server" />
-                                            <label class="form-check-label" for="ModeTemperature"></label>
+                                            <asp:CheckBox ID="ModeTemperature" runat="server" />
+                                            <label class="form-check-label" for="ModeTemperature">Mode Temperature</label>
                                         </div>
                                         <div class="form-check">
-                                            <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
-                                            <label class="form-check-label" for="RangeTemperature"></label>
+                                            <asp:CheckBox ID="RangeTemperature" runat="server" />
+                                            <label class="form-check-label" for="RangeTemperature">Range Temperature</label>
                                         </div>
                                     </div>
                                 </div>
@@ -125,6 +92,7 @@
                                 <div class="col-sm">
                                     <asp:Button class="btn btn-primary btn-outline" ID="Button2" Text="Get Data" OnClick="getDataButton_Click" runat="server" />
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -154,11 +122,81 @@
                 <div class="m-3 col-sm-8 border mt-2">
                     <i class="fa fa-arrow-down" aria-hidden="true"></i>
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        <script type="text/javascript">
+                            var timeTempData = new Array();
 
-                    <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
+
+                            function getData() {
+                                //Get The Control ID for the dropdown                                
+                                //Check if the object is not null
+                                DataPoints: [{ y: 6, label: "Apple" },
+                                { y: 4, label: "Mango" },
+                                    { y: 5, label: "Orange" },];
+                                window.alert("Das Array aus dem Backend " + Skills);
+                                windows.alert(Skills[0]);
+                                alert("Mein Debugger");
 
 
-                     
+                                var cookie = getCookie('WeatherData');
+
+                                if (timeTempData != null) {
+                                    for (var i = 0; i < timeTempData.length; i++) {
+                                        // Create and Element Object of type "option"
+                                        // var opt = document.createElement("option");
+
+                                        //Add the option element to the select item
+
+
+                                        timeTempData.add(Skills[i]);
+                                        //Reading Element From Array
+                                        //timeTempData = ;
+                                    }
+                                    window.alert(timeTempData)
+
+
+                                }
+
+                            }
+
+
+                            var v = $('#mydate').val();
+
+                            window.onload = function () {
+                                var chart = new CanvasJS.Chart("chartContainer", {
+                                    title: {
+                                        text: "Temperaturverlauf"
+                                    },
+                                    axisX: {
+                                        title: "Zeit"
+                                    },
+
+                                    axisY: {
+                                        title: "Temperatur C"
+                                    },
+
+                                    data: [{
+                                        type: "line",
+                                        dataPoints: [{ y: 6, label: "Apple" },
+                                            { y: 4, label: "Mango" },
+                                            { y: 5, label: "Orange" },]
+                                    }]
+                                })
+
+
+
+                                    ;
+                                chart.render();
+                            }
+                        </script>                       
+                       
+
+                        
+                               <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
+                      
+
+
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
                 </div>

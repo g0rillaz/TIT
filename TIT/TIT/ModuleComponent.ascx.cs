@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TITLib;
 
+
+
 namespace TIT
 {
     public partial class ModuleComponent : System.Web.UI.UserControl
@@ -15,7 +17,7 @@ namespace TIT
 
             if (!IsPostBack)
             {
-                loadInfo();
+                //loadInfo();
             }
 
         }
@@ -77,22 +79,60 @@ namespace TIT
             condition.Deviation = StandardDeviation.Checked;
             condition.Mode = ModeTemperature.Checked;
             condition.Range = RangeTemperature.Checked;
+            // condition.Intervall = Interval.SelectedValue;
+            condition.Intervall = Interval.SelectedValue;
 
+
+            
+            Console.WriteLine(Convert.ToString(FromDate.Text.GetType().Name));
+
+            DateTime fromDate = Convert.ToDateTime(FromDate.Text); // EndZeitpunkt
+            DateTime toDate = Convert.ToDateTime(ToDate.Text); // Startzeitpunkt
+            TimeSpan SpanDateInput = toDate - fromDate; // Timespanne            
+
+            System.Diagnostics.Debug.WriteLine("das ist unser Debugger");
+            System.Diagnostics.Debug.WriteLine(Convert.ToString(fromDate), Convert.ToString(toDate));
+            System.Diagnostics.Debug.WriteLine("Der Timesppan beträgt: "+ Convert.ToString(SpanDateInput.Days));           
+
+
+            for (int i = 0; i < SpanDateInput.Days; i++)
+            {
+               // Response.Cookies["WeatherData"][SpanDateInput[]] = "John Doe";
+                
+                System.Diagnostics.Debug.WriteLine(i);
+            }
+
+
+
+            Response.Cookies["user"]["Date"] = "05.05.2018";
+            Response.Cookies["user"]["Temp"] = "15";
+
+
+
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "GetData()", true);
+
+            // Anyone can call this.
 
             var test = Table.GridLines;
 
 
-            TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
-            TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
+            //TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
+            //TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
-            Statics.getWeatherData(country, station, condition);
+           // Statics.getWeatherData(country, station, condition);
+        }
 
+        public void ChartSize(int spanday)
 
+        {
+            return;
         }
 
         protected void Table_Load(object sender, EventArgs e)
         {
             Console.WriteLine("EDDW");
         }
+
     }
 }
