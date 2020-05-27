@@ -2,7 +2,7 @@
 
 <script runat="server">
 	  public int MinValue = 0;
-</script>
+	</script>
 <div class="module-component">
 
     <link href="Style/style_statistic.css" rel="stylesheet" />
@@ -190,18 +190,88 @@
                         </asp:TableRow>
                         <asp:TableRow></asp:TableRow>
                     </asp:Table>
-            </div>--%>
-            <div class="m-3 col-sm-8 border mt-2">
-                <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                </div>
+                <div class="m-3 col-sm-8 border mt-2">
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        <script type="text/javascript">
+                            var timeTempData = new Array();
 
-                <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
+
+                            function getData() {
+                                //Get The Control ID for the dropdown                                
+                                //Check if the object is not null
+                                DataPoints: [{ y: 6, label: "Apple" },
+                                { y: 4, label: "Mango" },
+                                    { y: 5, label: "Orange" },];
+                                window.alert("Das Array aus dem Backend " + Skills);
+                                windows.alert(Skills[0]);
+                                alert("Mein Debugger");
+
+
+                                var cookie = getCookie('WeatherData');
+
+                                if (timeTempData != null) {
+                                    for (var i = 0; i < timeTempData.length; i++) {
+                                        // Create and Element Object of type "option"
+                                        // var opt = document.createElement("option");
+
+                                        //Add the option element to the select item
+
+
+                                        timeTempData.add(Skills[i]);
+                                        //Reading Element From Array
+                                        //timeTempData = ;
+                                    }
+                                    window.alert(timeTempData)
+
+
+                                }
+
+                            }
+
+
+                            var v = $('#mydate').val();
+
+                            window.onload = function () {
+                                var chart = new CanvasJS.Chart("chartContainer", {
+                                    title: {
+                                        text: "Temperaturverlauf"
+                                    },
+                                    axisX: {
+                                        title: "Zeit"
+                                    },
+
+                                    axisY: {
+                                        title: "Temperatur C"
+                                    },
+
+                                    data: [{
+                                        type: "line",
+                                        dataPoints: [{ y: 6, label: "Apple" },
+                                            { y: 4, label: "Mango" },
+                                            { y: 5, label: "Orange" },]
+                                    }]
+                                })
 
 
 
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                                    ;
+                                chart.render();
+                            }
+                        </script>                       
+                       
 
+                        
+                               <%--  https://canvasjs.com/asp-net-mvc-charts/ --%>
+                      
+
+
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+                </div>
             </div>
         </div>
     </div>
-</div>

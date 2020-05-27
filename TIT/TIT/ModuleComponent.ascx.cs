@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TITLib;
 
+
+
 namespace TIT
 {
     public partial class ModuleComponent : System.Web.UI.UserControl
@@ -88,22 +90,60 @@ namespace TIT
             condition.OrderBy = OrderedBy.SelectedValue;
             condition.OrderDirection = false;
 
+            // condition.Intervall = Interval.SelectedValue;
+            condition.Intervall = Interval.SelectedValue;
 
+
+            
+            Console.WriteLine(Convert.ToString(FromDate.Text.GetType().Name));
+
+            DateTime fromDate = Convert.ToDateTime(FromDate.Text); // EndZeitpunkt
+            DateTime toDate = Convert.ToDateTime(ToDate.Text); // Startzeitpunkt
+            TimeSpan SpanDateInput = toDate - fromDate; // Timespanne            
+
+            System.Diagnostics.Debug.WriteLine("das ist unser Debugger");
+            System.Diagnostics.Debug.WriteLine(Convert.ToString(fromDate), Convert.ToString(toDate));
+            System.Diagnostics.Debug.WriteLine("Der Timesppan beträgt: "+ Convert.ToString(SpanDateInput.Days));           
+
+
+            for (int i = 0; i < SpanDateInput.Days; i++)
+            {
+               // Response.Cookies["WeatherData"][SpanDateInput[]] = "John Doe";
+                
+                System.Diagnostics.Debug.WriteLine(i);
+            }
+
+
+
+            Response.Cookies["user"]["Date"] = "05.05.2018";
+            Response.Cookies["user"]["Temp"] = "15";
+
+
+
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "GetData()", true);
             var test = FromDate.Text;
 
+            // Anyone can call this.
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.ID == Convert.ToInt32(Station.SelectedValue));
+            var test = Table.GridLines;
 
             //List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
             List<WeatherData> test_list_weatherdata = Statics.getWeatherData(country, station, condition);
 
+            TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
+            TITLib.Station station = Statics.list_stations.Find(x => x.Number == Station.SelectedValue);
 
             //gridview_main.DataSource = list_weatherdata;
             gridview_main.DataSource = test_list_weatherdata;
 
             gridview_main.DataBind();
+        public void ChartSize(int spanday)
 
+        {
+            return;
         }
 
         protected void Table_Load(object sender, EventArgs e)
