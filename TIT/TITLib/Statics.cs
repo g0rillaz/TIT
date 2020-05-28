@@ -204,13 +204,13 @@ namespace TITLib
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "WH_DATE_BEGIN";
             parameter10.Value = condition.DateFrom;
-            parameter10.SqlDbType = SqlDbType.Date;
+            parameter10.SqlDbType = SqlDbType.DateTime;
             parameter10.Direction = ParameterDirection.Input;
 
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "WH_DATE_END";
             parameter11.Value = condition.DateTo;
-            parameter11.SqlDbType = SqlDbType.Date;
+            parameter11.SqlDbType = SqlDbType.DateTime;
             parameter11.Direction = ParameterDirection.Input;
 
             SqlParameter parameter12 = new SqlParameter();
@@ -274,18 +274,51 @@ namespace TITLib
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 WeatherData weatherdata = new WeatherData();
-                //weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
                 weatherdata.CountryName = table.Rows[i]["Country"].ToString();
                 weatherdata.StationName = table.Rows[i]["Station"].ToString();
-                //weatherdata.StationNumber = table.Rows[i]["s.[Number]"].ToString();
                 weatherdata.Date = table.Rows[i]["Date"].ToString();
-                weatherdata.Mean = Convert.ToDecimal(table.Rows[i]["Mean"]);
-                weatherdata.Median = Convert.ToDecimal(table.Rows[i]["Median"]);
-                weatherdata.Min = Convert.ToDecimal(table.Rows[i]["Min"]);
-                weatherdata.Max = Convert.ToDecimal(table.Rows[i]["Max"]);
-                weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["SDev"]);
+                //weatherdata.Mean = Conevert.ToDecimal(table.Rows[i]["Mean"]);
+                //weatherdata.Median = Convert.ToDecimal(table.Rows[i]["Median"]);
+                //weatherdata.Min = Convert.ToDecimal(table.Rows[i]["Min"]);
+                //weatherdata.Max = Convert.ToDecimal(table.Rows[i]["Max"]);
+                //weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["SDev"]);
+                //weatherdata.Range = Convert.ToDecimal(table.Rows[i]["Range"]);
+
+
+
+                if(table.Rows[i]["Mean"] != null && Decimal.TryParse(table.Rows[i]["Mean"].ToString(), out decimal mean))
+                {
+                    weatherdata.Mean = mean;
+                }
+
+                if(table.Rows[i]["Median"] != null && Decimal.TryParse(table.Rows[i]["Median"].ToString(), out decimal median))
+                {
+                    weatherdata.Median = median;
+                }
+
+                if (table.Rows[i]["Min"] != null && Decimal.TryParse(table.Rows[i]["Min"].ToString(), out decimal min))
+                {
+                    weatherdata.Min = min;
+                }
+
+                if (table.Rows[i]["Max"] != null && Decimal.TryParse(table.Rows[i]["Max"].ToString(), out decimal max))
+                {
+                    weatherdata.Max = max;
+                }
+
+                if (table.Rows[i]["SDev"] != null && Decimal.TryParse(table.Rows[i]["SDev"].ToString(), out decimal deviation))
+                {
+                    weatherdata.Deviation = deviation;
+                }
+
+                if (table.Rows[i]["Range"] != null && Decimal.TryParse(table.Rows[i]["Range"].ToString(), out decimal range))
+                {
+                    weatherdata.Range = range;
+                }
+
+                //weatherdata.ID = Convert.ToInt32(table.Rows[i]["ID"]);
+                //weatherdata.StationNumber = table.Rows[i]["s.[Number]"].ToString();
                 //weatherdata.Mode = Convert.ToDecimal(table.Rows[i]["Mode"]);
-                weatherdata.Range = Convert.ToDecimal(table.Rows[i]["Range"]);
 
                 list_weatherdata.Add(weatherdata);
             }

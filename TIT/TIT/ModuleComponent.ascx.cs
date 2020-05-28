@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -125,12 +126,8 @@ namespace TIT
             System.Diagnostics.Debug.WriteLine(Convert.ToString(fromDate), Convert.ToString(toDate));
             System.Diagnostics.Debug.WriteLine("Der Timesppan beträgt: " + Convert.ToString(SpanDateInput.Days));
 
-
-            for (int i = 0; i < SpanDateInput.Days; i++)
-            {
-                Response.Cookies["WeatherData"]["Date"] = list_weatherdata[0].Date;
-                Response.Cookies["WeatherData"]["Median"] = list_weatherdata[0].Median.ToString();
-            }
+            string json = JsonConvert.SerializeObject(list_weatherdata);
+            Response.Cookies["WeatherData"]["list_weatherdata"] = json;
         }
 
         protected void Table_Load(object sender, EventArgs e)

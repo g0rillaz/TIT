@@ -23,7 +23,7 @@ namespace TITTest
             condition.OrderBy = "date";
             condition.OrderDirection = true;
             condition.DateFrom = new DateTime(1990, 1, 1);
-            condition.DateTo = new DateTime(1991, 12, 31);
+            condition.DateTo = new DateTime(1990, 12, 31);
             condition.Deviation = true;
             condition.Mean = true;
             condition.Max = true;
@@ -31,7 +31,7 @@ namespace TITTest
             //condition.Mode = false;
             condition.Range = true;
             condition.Raw = true;
-            condition.Mean = true;
+            condition.Median = true;
 
             Statics.getWeatherData(country, station, condition);
         }
