@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using TITLib;
 
@@ -65,13 +66,13 @@ namespace TIT
             TITLib.Condition condition = new Condition();
             //condition.Raw = RawTemperature.Checked;
             condition.Source = "NOAA";
-            condition.Mean = MeanTemperature.Checked;
-            condition.Median = MedianTemperature.Checked;
-            condition.Min = MinTemperature.Checked;
-            condition.Max = MaxTemperature.Checked;
-            condition.Deviation = StandardDeviation.Checked;
+            condition.Mean = true;
+            condition.Median = true;
+            condition.Min = true;
+            condition.Max = true;
+            condition.Deviation = true;
             //condition.Mode = ModeTemperature.Checked;
-            condition.Range = RangeTemperature.Checked;
+            condition.Range = true;
             condition.DateFrom = Convert.ToDateTime(FromDate.Text);
             condition.DateTo = Convert.ToDateTime(ToDate.Text);
             condition.Intervall = Interval.SelectedValue;
@@ -100,9 +101,63 @@ namespace TIT
         /// <param name="condition"></param>
         private void sendDataToChart(List<WeatherData> list_weatherdata, Condition condition)
         {
+            Series seriesMin = new Series("WeatherDataMin");
+            Series seriesMean = new Series("WeatherDataMean");
+            Series seriesMax = new Series("WeatherDataMax");
+            Series seriesMedian = new Series("WeatherDataMedian");
+            Series seriesDeviation = new Series("WeatherDataDeviation");
+            Series seriesRange = new Series("WeatherDataRange");
 
-            Chart_WeatherData.DataSource = Statics.list_weatherdata;
+            Chart_WeatherData.Series.Add(seriesMin);
+            Chart_WeatherData.Series.Add(seriesMean);
+            Chart_WeatherData.Series.Add(seriesMax);
+            Chart_WeatherData.Series.Add(seriesMedian);
+            Chart_WeatherData.Series.Add(seriesDeviation);
+            Chart_WeatherData.Series.Add(seriesRange);
+
+            Chart_WeatherData.DataSource = list_weatherdata;
+            Chart_WeatherData.Series["WeatherDataMin"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataMin"].YValueMembers = "Min";
+            Chart_WeatherData.Series["WeatherDataMin"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataMin"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Series["WeatherDataMean"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataMean"].YValueMembers = "Mean";
+            Chart_WeatherData.Series["WeatherDataMean"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataMean"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Series["WeatherDataMax"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataMax"].YValueMembers = "Max";
+            Chart_WeatherData.Series["WeatherDataMax"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataMax"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Series["WeatherDataMedian"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataMedian"].YValueMembers = "Median";
+            Chart_WeatherData.Series["WeatherDataMedian"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataMedian"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Series["WeatherDataDeviation"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataDeviation"].YValueMembers = "Deviation";
+            Chart_WeatherData.Series["WeatherDataDeviation"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataDeviation"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Series["WeatherDataRange"].XValueMember = "Date";
+            Chart_WeatherData.Series["WeatherDataRange"].YValueMembers = "Range";
+            Chart_WeatherData.Series["WeatherDataRange"].ChartType = SeriesChartType.Line;
+            Chart_WeatherData.Series["WeatherDataRange"].IsVisibleInLegend = true;
+
+            Chart_WeatherData.Legends.Add(new Legend());
+
             Chart_WeatherData.DataBind();
+
+            //foreach (WeatherData weatherdata in Statics.list_weatherdata)
+            //{
+            //    DataPoint dp = new DataPoint(Convert.ToDouble(weatherdata.Min), Convert.ToDouble(weatherdata.ID));
+            //    series.Points.Add(dp);
+            //}
+
+            //Chart_WeatherData.Series.Add("WeatherDataMin");
+            //Chart_WeatherData.DataBind();
 
 
 
