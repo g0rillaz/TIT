@@ -69,58 +69,13 @@ namespace TIT
         protected global::System.Web.UI.WebControls.DropDownList Direction;
 
         /// <summary>
-        /// MeanTemperature-Steuerelement
+        /// button_order-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox MeanTemperature;
-
-        /// <summary>
-        /// MedianTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox MedianTemperature;
-
-        /// <summary>
-        /// MinTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox MinTemperature;
-
-        /// <summary>
-        /// MaxTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox MaxTemperature;
-
-        /// <summary>
-        /// StandardDeviation-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox StandardDeviation;
-
-        /// <summary>
-        /// RangeTemperature-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RangeTemperature;
+        protected global::System.Web.UI.WebControls.Button button_order;
 
         /// <summary>
         /// FromDate-Steuerelement
@@ -150,15 +105,6 @@ namespace TIT
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// button_order-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button button_order;
-
-        /// <summary>
         /// gridview_main-Steuerelement
         /// </summary>
         /// <remarks>
@@ -166,5 +112,14 @@ namespace TIT
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridview_main;
+
+        /// <summary>
+        /// Chart_WeatherData-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart_WeatherData;
     }
 }

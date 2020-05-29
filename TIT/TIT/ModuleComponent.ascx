@@ -9,17 +9,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-7"></div>
+            <%--<div class="col-sm-7"></div>--%>
             <asp:PlaceHolder ID="ModulePlaceholder" runat="server"></asp:PlaceHolder>
-            <div class="m-3 col-sm-8 mt-5 border border-left-6">
+            <div class="m-3 col-sm-12 mt-5 border border-left-6">
                 <div class="input-group mt-3">
                     <%--<asp:TextBox class="form-control" ID="Modulname" Text="Modulname" runat="server"></asp:TextBox>--%>
                 </div>
                 <div>
-                    <div class="container-fluid">
-                        <div class="row mb-1">
-                            <div class="col-sm">
-<%--                           <asp:DropDownList ID="Source" CssClass="" runat="server">
+                    <div class="container-fluid  ">
+                        <div class="row m-1 p-1">
+                            <div class="col-sm-6">
+                                <%--                           <asp:DropDownList ID="Source" CssClass="" runat="server">
                                     <asp:ListItem Text="Meteo" Value="METEO" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="NOAA" Value="NOAA"></asp:ListItem>
                                 </asp:DropDownList>--%>
@@ -27,15 +27,15 @@
                                 </asp:DropDownList>
                                 <asp:DropDownList ID="Station" CssClass="" runat="server">
                                 </asp:DropDownList>
-                                <br>
-                            </div>
-                            <div class="col-sm">
                                 <asp:DropDownList ID="Interval" CssClass="" runat="server">
                                     <asp:ListItem Text="Daily" Value="d"></asp:ListItem>
                                     <asp:ListItem Text="Weekly" Value="w"></asp:ListItem>
                                     <asp:ListItem Text="Monthly" Value="m"></asp:ListItem>
                                     <asp:ListItem Text="Yearly" Value="y" Selected="True"></asp:ListItem>
                                 </asp:DropDownList>
+                            </div>
+                            <div class="col-sm-6">
+                                
                                 <asp:DropDownList ID="OrderedBy" CssClass="" runat="server">
                                     <asp:ListItem Text="Date" Value="date" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Country" Value="country"></asp:ListItem>
@@ -50,61 +50,58 @@
                                 <asp:DropDownList ID="Direction" CssClass="" runat="server">
                                     <asp:ListItem Text="Aufsteigend" Value="auf" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Absteigend" Value="ab"></asp:ListItem>
-                                </asp:DropDownList>
+                                </asp:DropDownList>                                
+                                <asp:Button class="btn btn-primary btn-outline" ID="button_order" Text="Order" OnClick="button_order_Click" runat="server" />
                             </div>
-
-                            <div class="col-sm">
-                                <div class="col-sm-4">
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="MeanTemperature" Text="MeanTemperature" runat="server" />
-                                        <label class="form-check-label" for="MeanTemperature"></label>
-                                    </div>
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="MedianTemperature" Text="MedianTemperature" runat="server" />
-                                        <label class="form-check-label" for="MedianTemperature"></label>
-                                    </div>
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="MinTemperature" Text="MinTemperature" runat="server" />
-                                        <label class="form-check-label" for="MinTemperature"></label>
-                                    </div>
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="MaxTemperature" Text="MaxTemperature" runat="server" />
-                                        <label class="form-check-label" for="MaxTemperature"></label>
-                                    </div>
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="StandardDeviation" Text="StandardDeviation" runat="server" />
-                                        <label class="form-check-label" for="StandardDeviation"></label>
-                                    </div>
-                                    <div class="form-check">
-                                        <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
-                                        <label class="form-check-label" for="RangeTemperature"></label>
+                            </div>
+                                <div class="row">
+                                   
+                                    <div class="col-sm-4">
+<%--                                        <div class="form-check">
+                                            <asp:CheckBox ID="MeanTemperature" Text="MeanTemperature" runat="server" />
+                                            <label class="form-check-label" for="MeanTemperature"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <asp:CheckBox ID="MedianTemperature" Text="MedianTemperature" runat="server" />
+                                            <label class="form-check-label" for="MedianTemperature"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <asp:CheckBox ID="MinTemperature" Text="MinTemperature" runat="server" />
+                                            <label class="form-check-label" for="MinTemperature"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <asp:CheckBox ID="MaxTemperature" Text="MaxTemperature" runat="server" />
+                                            <label class="form-check-label" for="MaxTemperature"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <asp:CheckBox ID="StandardDeviation" Text="StandardDeviation" runat="server" />
+                                            <label class="form-check-label" for="StandardDeviation"></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <asp:CheckBox ID="RangeTemperature" Text="RangeTemperature" runat="server" />
+                                            <label class="form-check-label" for="RangeTemperature"></label>
+                                        </div>--%>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
-
-                                <asp:TextBox TextMode="Date" Class="form-control" ID="FromDate" runat="server"></asp:TextBox>
-
-                            </div>
-                            <div class="col-sm-4">
-                                <asp:TextBox TextMode="Date" Class="form-control" ID="ToDate" runat="server"></asp:TextBox>
+                            <div class="col-sm-4">             
+                                <asp:TextBox TextMode="Date" Class="form-control" ID="FromDate" runat="server" Text="From date"></asp:TextBox>                            
+                                <asp:TextBox TextMode="Date" Class="form-control" ID="ToDate" runat="server" Text="To date"></asp:TextBox>
                             </div>
                             <div class="col-sm-2">
+                                <asp:Button class="btn btn-primary btn-outline" ID="Button2" Text="Get Data" OnClick="getDataButton_Click" runat="server" />   
                             </div>
                             <div class="col-sm">
-                                <%--<asp:Button class="btn btn-primary btn-outline" ID="removeModule" Text="Remove Module" OnClick="removeModule_Click" runat="server" />--%>
-                               
-                                <asp:Button class="btn btn-primary btn-outline" ID="Button2" Text="Get Data" OnClick="getDataButton_Click" runat="server" />
-                                <asp:Button class="btn btn-primary btn-outline" ID="button_order" Text="Order" OnClick="button_order_Click" runat="server" />
-                          
-                                </div>
+                                <%--<asp:Button class="btn btn-primary btn-outline" ID="removeModule" Text="Remove Module" OnClick="removeModule_Click" runat="server" />--%>                                                             
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+    <div class="row">
+        <div class="m-3 col-sm-12 mt-3 border border-left-6">
             <asp:GridView ID="gridview_main" runat="server" AutoGenerateColumns="False" CssClass="gridview_main">
                 <Columns>
                     <asp:TemplateField HeaderText="ID" ItemStyle-CssClass="" HeaderStyle-CssClass="">
@@ -159,82 +156,20 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-        </div>
-        <div class="m-3 col-sm-8 border mt-2">
-            <%--<i class="fa fa-arrow-down" aria-hidden="true"></i>--%>
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-            <script type="text/javascript">
-                var timeTempData = new Array();
-
-
-                function getData() {
-                    //Get The Control ID for the dropdown                                
-                    //Check if the object is not null
-                    DataPoints: [{ y: 6, label: "Apple" },
-                    { y: 4, label: "Mango" },
-                    { y: 5, label: "Orange" },];
-                    window.alert("Das Array aus dem Backend " + Skills);
-                    windows.alert(Skills[0]);
-                    alert("Mein Debugger");
-
-
-                    var cookie = getCookie('WeatherData');
-
-                    if (timeTempData != null) {
-                        for (var i = 0; i < timeTempData.length; i++) {
-                            // Create and Element Object of type "option"
-                            // var opt = document.createElement("option");
-
-                            //Add the option element to the select item
-
-
-                            timeTempData.add(Skills[i]);
-                            //Reading Element From Array
-                            //timeTempData = ;
-                        }
-                        window.alert(timeTempData)
-
-
-                    }
-
-                }
-
-
-                var v = $('#mydate').val();
-
-                window.onload = function () {
-                    var chart = new CanvasJS.Chart("chartContainer", {
-                        title: {
-                            text: "Temperaturverlauf"
-                        },
-                        axisX: {
-                            title: "Zeit"
-                        },
-
-                        axisY: {
-                            title: "Temperatur C"
-                        },
-
-                        data: [{
-                            type: "line",
-                            dataPoints: [{ y: 6, label: "Apple" },
-                            { y: 4, label: "Mango" },
-                            { y: 5, label: "Orange" },]
-                        }]
-                    })
-
-
-
-                        ;
-                    chart.render();
-                }
-            </script>
-
-
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-        </div>
+        </div>        
     </div>
-</div>
+            
+        </div>
+            <div class="row">   
+                <div class="m-3 col-sm-12 border mt-2">
+            
+                <asp:Chart ID="Chart_WeatherData" style="margin-bottom: 10vh; width: 40vw; height: 100%" Height="500px" Width="700px" runat="server">
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+        
+            </div>
+            
+        </div>
