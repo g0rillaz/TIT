@@ -104,7 +104,7 @@ namespace TIT
             List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
             gridview_main.DataSource = list_weatherdata;
             gridview_main.DataBind();
-
+            // Irgendwas
             sendDataToChart(list_weatherdata, condition);
         }
         public void ChartSize(int spanday)
