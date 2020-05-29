@@ -116,18 +116,23 @@ namespace TIT
         private void sendDataToChart(List<WeatherData> list_weatherdata, Condition condition)
         {
 
-            Console.WriteLine(Convert.ToString(FromDate.Text.GetType().Name));
+            Chart_WeatherData.DataSource = Statics.list_weatherdata;
+            Chart_WeatherData.DataBind();
 
-            DateTime fromDate = Convert.ToDateTime(condition.DateFrom); // EndZeitpunkt
-            DateTime toDate = Convert.ToDateTime(condition.DateTo); // Startzeitpunkt
-            TimeSpan SpanDateInput = toDate - fromDate; // Timespanne            
 
-            System.Diagnostics.Debug.WriteLine("das ist unser Debugger");
-            System.Diagnostics.Debug.WriteLine(Convert.ToString(fromDate), Convert.ToString(toDate));
-            System.Diagnostics.Debug.WriteLine("Der Timesppan beträgt: " + Convert.ToString(SpanDateInput.Days));
 
-            string json = JsonConvert.SerializeObject(list_weatherdata);
-            Response.Cookies["WeatherData"]["list_weatherdata"] = json;
+            //Console.WriteLine(Convert.ToString(FromDate.Text.GetType().Name));
+
+            //DateTime fromDate = Convert.ToDateTime(condition.DateFrom); // EndZeitpunkt
+            //DateTime toDate = Convert.ToDateTime(condition.DateTo); // Startzeitpunkt
+            //TimeSpan SpanDateInput = toDate - fromDate; // Timespanne            
+
+            //System.Diagnostics.Debug.WriteLine("das ist unser Debugger");
+            //System.Diagnostics.Debug.WriteLine(Convert.ToString(fromDate), Convert.ToString(toDate));
+            //System.Diagnostics.Debug.WriteLine("Der Timesppan beträgt: " + Convert.ToString(SpanDateInput.Days));
+
+            //string json = JsonConvert.SerializeObject(list_weatherdata);
+            //Response.Cookies["WeatherData"]["list_weatherdata"] = json;
         }
 
         protected void Table_Load(object sender, EventArgs e)

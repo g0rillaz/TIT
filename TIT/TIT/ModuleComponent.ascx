@@ -52,6 +52,15 @@
                             </div>
 
                             <div class="col-sm">
+                                <div class="col-sm-8">
+                                    </div>
+
+
+
+                                <div class="row">
+
+                                    <div class="col-sm-8">
+                                    </div>
                                 <div class="col-sm-4">
 <%--                                    <div class="form-check">
                                         <asp:CheckBox ID="RawTemperature" Text="RawTemperature" runat="server" />
@@ -86,6 +95,10 @@
                                         <label class="form-check-label" for="RangeTemperature"></label>
                                     </div>
                                 </div>
+
+                                    </div>
+
+
                             </div>
                         </div>
                         <div class="row">
@@ -193,19 +206,43 @@
                 </div>
                 <div class="m-3 col-sm-8 border mt-2">
                     <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                        
+                    <div id="chartContainer" style="height: 370px; width: 100%;">
+
+                        <asp:Chart ID="Chart_WeatherData" runat="server">
+	                        <Series>
+		                        <asp:Series Name="Testing" YValueType="Int32">
+
+			                        <Points>
+				                        <asp:DataPoint AxisLabel="Test 1" YValues="80" />
+				                        <asp:DataPoint AxisLabel="Test 2" YValues="20" />
+
+				                        <asp:DataPoint AxisLabel="Test 3" YValues="30" />
+				                        <asp:DataPoint AxisLabel="Test 4" YValues="40" />
+
+			                        </Points>
+		                        </asp:Series>
+	                        </Series>
+	                        <ChartAreas>
+		                        <asp:ChartArea Name="ChartArea1">
+		                        </asp:ChartArea>
+
+	                        </ChartAreas>
+                        </asp:Chart>
+          
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                         <script type="text/javascript">
+ 
                             var timeTempData = new Array();
 
 
                             function getData() {
                                 //Get The Control ID for the dropdown                                
                                 //Check if the object is not null
+                                rc = Cookie.get('')
                                 DataPoints: [{ y: 6, label: "Apple" },
-                                { y: 4, label: "Mango" },
-                                    { y: 5, label: "Orange" },];
+                                             { y: 4, label: "Mango" },
+                                             { y: 5, label: "Orange" },
+                                            ];
                                 window.alert("Das Array aus dem Backend " + Skills);
                                 windows.alert(Skills[0]);
                                 alert("Mein Debugger");
@@ -236,6 +273,13 @@
                             var v = $('#mydate').val();
 
                             window.onload = function () {
+                                rc = Cookie.get('WheaterData'); //rc == result cookie
+                                // Das ist ein Test um die Json aus die nn Coolies zu ziehn
+                                if (rc.boolean === true) {
+                                    var data = JSON.parse(decodeURIComponent(rc.data));
+                                    alert(data.body.replace('+', ' '));
+                                }
+                                // Das ist ein Test um die Json aus die nn Coolies zu ziehn
                                 var chart = new CanvasJS.Chart("chartContainer", {
                                     title: {
                                         text: "Temperaturverlauf"
@@ -255,13 +299,16 @@
                                             { y: 5, label: "Orange" },]
                                     }]
                                 })
-
-
-
-                                    ;
+                                ;
                                 chart.render();
                             }
-                        </script>                       
+
+
+
+
+                        </script>
+                        </div>
+                    
                        
 
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
