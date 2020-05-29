@@ -31,35 +31,19 @@ namespace TIT
         {
             Statics.getListCountrys();
 
-            //ObservableCollection<Country> oc_country = new ObservableCollection<Country>();
-
-            Region.DataSource = Statics.list_country;
+            Region.DataSource = Statics.list_country.OrderBy(x => x.Name);
             Region.DataTextField = "Name";
             Region.DataValueField = "IsoCode";
             Region.DataBind();
-
-            //Source.DataSource = Statics.list_country;
-            //Source.DataTextField = "Name";
-            //Source.DataValueField = "IsoCode";
-            //Source.DataBind();
-
-            //dropdown_sort.DataSource = list_country;
-            //dropdown_sort.DataTextField = "Name";
-            //dropdown_sort.DataValueField = "IsoCode";
-            //dropdown_sort.DataBind();
-            //Test End
-
-            //gridview_main.DataSource = Statics.list_country.OrderBy(x => x.ID);
-            //gridview_main.DataBind();
         }
 
         private void refreshStations()
         {
 
             string IsoCode = Region.SelectedItem.Value;
-            Statics.getListStationsByCountry(IsoCode, Source.SelectedValue);
+            Statics.getListStationsByCountry(IsoCode, "NOAA");
 
-            Station.DataSource = Statics.list_stations;
+            Station.DataSource = Statics.list_stations.OrderBy(o => o.Name);
             Station.DataTextField = "Name";
             Station.DataValueField = "ID";
             Station.DataBind();
@@ -71,13 +55,16 @@ namespace TIT
             refreshStations();
         }
 
+        /// <summary>
+        /// Führt eine Datenbankabfrage aus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void getDataButton_Click(object sender, EventArgs e)
         {
-
             TITLib.Condition condition = new Condition();
-
             //condition.Raw = RawTemperature.Checked;
-            condition.Source = Source.SelectedValue;
+            condition.Source = "NOAA";
             condition.Mean = MeanTemperature.Checked;
             condition.Median = MedianTemperature.Checked;
             condition.Min = MinTemperature.Checked;
@@ -88,24 +75,17 @@ namespace TIT
             condition.DateFrom = Convert.ToDateTime(FromDate.Text);
             condition.DateTo = Convert.ToDateTime(ToDate.Text);
             condition.Intervall = Interval.SelectedValue;
-            condition.OrderBy = OrderedBy.SelectedValue;
+            condition.OrderBy = "date";
             condition.OrderDirection = false;
-
-
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "GetData()", true);
-            //var test = FromDate.Text;
-
-            // Anyone can call this.
 
             TITLib.Country country = Statics.list_country.Find(x => x.IsoCode == Region.SelectedValue);
             TITLib.Station station = Statics.list_stations.Find(x => x.ID == Convert.ToInt32(Station.SelectedValue));
-            //var test = Table.GridLines;
 
-            List<WeatherData> list_weatherdata = Statics.getWeatherData(country, station, condition);
-            gridview_main.DataSource = list_weatherdata;
+            Statics.list_weatherdata = Statics.getWeatherData(country, station, condition);
+            gridview_main.DataSource = Statics.list_weatherdata.OrderBy(x => x.ID);
             gridview_main.DataBind();
-            // Irgendwas
-            sendDataToChart(list_weatherdata, condition);
+
+            sendDataToChart(Statics.list_weatherdata, condition);
         }
         public void ChartSize(int spanday)
 
@@ -113,6 +93,11 @@ namespace TIT
             return;
         }
 
+        /// <summary>
+        /// Erstellt ein Cookie mit den Daten
+        /// </summary>
+        /// <param name="list_weatherdata"></param>
+        /// <param name="condition"></param>
         private void sendDataToChart(List<WeatherData> list_weatherdata, Condition condition)
         {
 
@@ -135,10 +120,6 @@ namespace TIT
             //Response.Cookies["WeatherData"]["list_weatherdata"] = json;
         }
 
-        protected void Table_Load(object sender, EventArgs e)
-        {
-            Console.WriteLine("EDDW");
-        }
 
         protected void removeModule_Click(object sender, EventArgs e)
         {
@@ -149,6 +130,143 @@ namespace TIT
             statistic stat = this.Page as statistic;
             stat.Count -= 1;
             this.Parent.Controls.Remove(this);
+        }
+
+        /// <summary>
+        /// Ordnet die Daten
+        /// </summary>
+        /// <param name="ordertype"></param>
+        /// <param name="orderdirection"></param>
+        private void Order(string ordertype, string orderdirection)
+        {
+
+            object datasource = gridview_main.DataSource;
+
+            if (Statics.list_weatherdata != null)
+            {
+                List<WeatherData> list_weatherdata = Statics.list_weatherdata;
+
+                if (ordertype == "date")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.ID);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.ID);
+                    }
+
+                }
+
+                if (ordertype == "country")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.CountryName);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.CountryName);
+                    }
+                }
+
+                if (ordertype == "station")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.StationName);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.StationName);
+                    }
+                }
+
+                if (ordertype == "mean")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Mean);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Mean);
+                    }
+                }
+
+                if (ordertype == "min")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Min);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Min);
+                    }
+                }
+
+                if (ordertype == "max")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Max);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Max);
+                    }
+                }
+
+                if (ordertype == "deviation")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Deviation);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Deviation);
+                    }
+                }
+
+                if (ordertype == "median")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Median);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Median);
+                    }
+                }
+
+                if (ordertype == "range")
+                {
+                    if (orderdirection == "auf")
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderBy(x => x.Range);
+                    }
+                    else
+                    {
+                        gridview_main.DataSource = list_weatherdata.OrderByDescending(x => x.Range);
+                    }
+                }
+
+                gridview_main.DataBind();
+            }
+        }
+
+        /// <summary>
+        /// Führt die Methode Order aus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void button_order_Click(object sender, EventArgs e)
+        {
+            Order(OrderedBy.SelectedValue, Direction.SelectedValue);
         }
     }
 }

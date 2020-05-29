@@ -15,6 +15,7 @@ namespace TITLib
         private static DBConnection dBConnection;
         public static List<Country> list_country;
         public static List<Station> list_stations;
+        public static List<WeatherData> list_weatherdata;
 
         /// <summary>
         /// Lädt alle Länder aus der Datenbank und fügt Sie zur list_country hinzu
@@ -138,14 +139,15 @@ namespace TITLib
             parameter0.SqlDbType = SqlDbType.Bit;
             parameter0.Direction = ParameterDirection.Input;
 
-            if (condition.Source == "NOAA")
-            {
-                parameter0.Value = 0;
-            } else
-            {
-                parameter0.Value = 1;
-            }
+            //if (condition.Source == "NOAA")
+            //{
+            //    parameter0.Value = 0;
+            //} else
+            //{
+            //    parameter0.Value = 1;
+            //}
 
+            parameter0.Value = 0;
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "INTERVALL";
@@ -284,9 +286,12 @@ namespace TITLib
                 //weatherdata.Deviation = Convert.ToDecimal(table.Rows[i]["SDev"]);
                 //weatherdata.Range = Convert.ToDecimal(table.Rows[i]["Range"]);
 
+                if (table.Rows[i]["ID"] != null && Int32.TryParse(table.Rows[i]["ID"].ToString(), out int id))
+                {
+                    weatherdata.ID = id;
+                }
 
-
-                if(table.Rows[i]["Mean"] != null && Decimal.TryParse(table.Rows[i]["Mean"].ToString(), out decimal mean))
+                if (table.Rows[i]["Mean"] != null && Decimal.TryParse(table.Rows[i]["Mean"].ToString(), out decimal mean))
                 {
                     weatherdata.Mean = mean;
                 }
