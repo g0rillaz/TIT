@@ -1,6 +1,11 @@
-﻿.container-statistic {
+﻿body {
+    background-color: white;
+}
+
+.container-statistic {
     display: flex;
     flex-direction: column;
+    margin-left: 8vw;
 }
 
 .container-statistic-module-header {

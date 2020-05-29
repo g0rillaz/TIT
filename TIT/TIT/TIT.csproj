@@ -186,6 +186,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="search.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="Style\style_info.css" />
     <Content Include="Style\style_main.css" />
     <Content Include="Style\style_start.css" />
     <Content Include="Style\style_statistic.css" />

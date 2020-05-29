@@ -139,13 +139,7 @@ namespace TITLib
             parameter0.SqlDbType = SqlDbType.Bit;
             parameter0.Direction = ParameterDirection.Input;
 
-            //if (condition.Source == "NOAA")
-            //{
-            //    parameter0.Value = 0;
-            //} else
-            //{
-            //    parameter0.Value = 1;
-            //}
+      
 
             parameter0.Value = 0;
 
@@ -178,7 +172,13 @@ namespace TITLib
             parameter5.Value = Convert.ToInt32(condition.Max);
             parameter5.SqlDbType = SqlDbType.Bit;
             parameter5.Direction = ParameterDirection.Input;
-
+            //if (condition.Source == "NOAA")
+            //{
+            //    parameter0.Value = 0;
+            //} else
+            //{
+            //    parameter0.Value = 1;
+            //}
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "SHW_SDEV";
             parameter6.Value = Convert.ToInt32(condition.Deviation);

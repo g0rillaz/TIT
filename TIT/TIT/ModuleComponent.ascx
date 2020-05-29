@@ -84,7 +84,9 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
+
                                 <asp:TextBox TextMode="Date" Class="form-control" ID="FromDate" runat="server"></asp:TextBox>
+
                             </div>
                             <div class="col-sm-4">
                                 <asp:TextBox TextMode="Date" Class="form-control" ID="ToDate" runat="server"></asp:TextBox>
@@ -93,13 +95,16 @@
                             </div>
                             <div class="col-sm">
                                 <%--<asp:Button class="btn btn-primary btn-outline" ID="removeModule" Text="Remove Module" OnClick="removeModule_Click" runat="server" />--%>
+                               
                                 <asp:Button class="btn btn-primary btn-outline" ID="Button2" Text="Get Data" OnClick="getDataButton_Click" runat="server" />
                                 <asp:Button class="btn btn-primary btn-outline" ID="button_order" Text="Order" OnClick="button_order_Click" runat="server" />
-                            </div>
+                          
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <asp:GridView ID="gridview_main" runat="server" AutoGenerateColumns="False" CssClass="gridview_main">
                 <Columns>
                     <asp:TemplateField HeaderText="ID" ItemStyle-CssClass="" HeaderStyle-CssClass="">

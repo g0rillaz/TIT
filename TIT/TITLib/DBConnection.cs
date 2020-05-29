@@ -79,6 +79,7 @@ namespace TITLib
             return returnData;
         }
 
+
         private DataTable readData()
         {
             SqlDataReader datareader = Command.ExecuteReader();
@@ -88,6 +89,12 @@ namespace TITLib
             return dataTable;
         }
 
+        /// <summary>
+        /// Ausführen von SQL-Prozeduren
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="sqlParameters"></param>
+        /// <returns></returns>
         public DataTable readDataWithStoredProcedure(string command, List<SqlParameter> sqlParameters)
         {
             createCommand(command);

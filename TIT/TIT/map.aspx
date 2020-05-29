@@ -54,7 +54,8 @@
                 map.getCanvas().style.cursor = 'pointer';
 
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                var htmlinfo = "<p>Station: " + e.features[0].properties.name + "</p><p>Country: " + e.features[0].properties.country + "</p><p>Latitude: " + e.features[0].properties.latitude + "</p><p>Longitude: " + e.features[0].properties.longitude + "</p>";
+                var htmlinfo = "<p>Station: " + e.features[0].properties.name + "</p><p>Country: " +
+                    e.features[0].properties.country + "</p><p>Latitude: " + e.features[0].properties.latitude + "</p><p>Longitude: " + e.features[0].properties.longitude + "</p>";
 
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears

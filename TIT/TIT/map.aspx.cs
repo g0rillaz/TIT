@@ -42,27 +42,27 @@ namespace TIT
             return feature;
         }
 
-        private Feature createPolygonFeature(List<Station> list_station, string areaname)
-        {
-            List<Position> list_position = new List<Position>();
-            foreach (Station station in list_station)
-            {
-                Position position = new Position(station.Latitude, station.Longitude);
-                list_position.Add(position);
-            }
+        //private Feature createPolygonFeature(List<Station> list_station, string areaname)
+        //{
+        //    List<Position> list_position = new List<Position>();
+        //    foreach (Station station in list_station)
+        //    {
+        //        Position position = new Position(station.Latitude, station.Longitude);
+        //        list_position.Add(position);
+        //    }
 
-            LineString lineString = new LineString(list_position);
-            List<LineString> list_linestring = new List<LineString>();
-            list_linestring.Add(lineString);
+        //    LineString lineString = new LineString(list_position);
+        //    List<LineString> list_linestring = new List<LineString>();
+        //    list_linestring.Add(lineString);
 
-            Polygon polygon = new Polygon(list_linestring);
+        //    Polygon polygon = new Polygon(list_linestring);
 
-            Dictionary<string, object> properties = new Dictionary<string, object>();
-            properties.Add("name", areaname);
+        //    Dictionary<string, object> properties = new Dictionary<string, object>();
+        //    properties.Add("name", areaname);
 
-            Feature feature = new Feature(polygon, properties);
-            return feature;
-        }
+        //    Feature feature = new Feature(polygon, properties);
+        //    return feature;
+        //}
 
         private void createGeoJson()
         {
@@ -106,14 +106,14 @@ namespace TIT
         }
 
 
-        private void loadInfo()
-        {
-            Statics.getListCountrys();
+        //private void loadInfo()
+        //{
+        //    Statics.getListCountrys();
 
-            //gridview_main.DataSource = Statics.list_country.OrderBy(x => x.Name);
-            //gridview_main.DataBind();
+        //    //gridview_main.DataSource = Statics.list_country.OrderBy(x => x.Name);
+        //    //gridview_main.DataBind();
 
-        }
+        //}
 
         protected void button_createGeoJson_Click(object sender, EventArgs e)
         {
